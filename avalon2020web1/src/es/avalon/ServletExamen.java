@@ -9,17 +9,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-@WebServlet("/ServletHola")
-public class ServletHola extends HttpServlet {
+@WebServlet("/ServletExamen")
+public class ServletExamen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
+    public ServletExamen() {
+        super();
+        
+    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
+		int nota=Integer.parseInt(request.getParameter("nota"));
 		PrintWriter pw=response.getWriter();
-		pw.println("<html><body>hola desde un servidor</body></html>");
+		
+		if (nota>=5) {
+			pw.println("<html><body>has aprobado</body></html>");
+		}
+		else {
+			pw.println("<html><body>has suspendido</body></html>");
+		}
+		
+		pw.println("<html>");
+		
 	}
+
+
 
 }
