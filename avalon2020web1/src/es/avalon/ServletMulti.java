@@ -10,30 +10,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletExamen
+ * Servlet implementation class ServletMulti
  */
-@WebServlet("/ServletNumero")
-public class ServletNumero extends HttpServlet {
+@WebServlet("/ServletMulti")
+public class ServletMulti extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int numero= Integer.parseInt(request.getParameter("numero"));
-		
-		PrintWriter pw= response.getWriter();
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int numero = Integer.parseInt(request.getParameter("numero"));
+
+		PrintWriter pw = response.getWriter();
+
 		pw.println("<html>");
 		pw.println("<body>");
-		for (int i = 0; i <= numero; ++i) {
+
+		for (int i = 0; i <= 10; i++) {
+			pw.println("<p>"+numero+"x" + i + "=" + (numero*i) +"<p>");
 			
-			pw.println("<p>"+i+"<p>");
 			
 		}
 		pw.println("</body>");
 		pw.println("</html>");
-		
 	}
 
-	
 }
