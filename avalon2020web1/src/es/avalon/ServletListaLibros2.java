@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import es.avalon.dominio.Libro;
 
 
-@WebServlet("/ServletListaLibros")
-public class ServletListaLibros extends HttpServlet {
+@WebServlet("/ServletListaLibros2")
+public class ServletListaLibros2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
@@ -35,21 +35,29 @@ public class ServletListaLibros extends HttpServlet {
 		lista.add(libro5);
 		
 				
-		pw.println("<html><body>");
+		pw.println("<html><body><table border=\"1px solid color=red\">");
+		pw.println("<tr>");
+		pw.println("<th>ISBN</th>");
+		pw.println("<th>Titulo</th>");
+		pw.println("<th>Autor</th>");
+		pw.println("<th>Precio</th>");
+		pw.println("<th>Categoria</th>");
+		pw.println("</tr>");
 		
 		for (Libro l: lista) {
 			
-			pw.println("<p>");
-			pw.println(l.getIsbn());
-			pw.println(l.getTitulo());
-			pw.println(l.getAutor());
-			pw.println(l.getPrecio());
-			pw.println(l.getCategoria());
-			pw.println("</p>");
+			pw.println("<tr>");
+			pw.println("<td>"+l.getIsbn()+"</td>");
+			pw.println("<td>"+l.getTitulo()+"</td>");
+			pw.println("<td>"+l.getAutor()+"</td>");
+			pw.println("<td>"+l.getPrecio()+"</td>");
+			pw.println("<td>"+l.getCategoria()+"</td>");
+			pw.println("</tr>");
+
 			
 		}
 
-		pw.println("</body></html>");
+		pw.println("</table></body></html>");
 		pw.close();
 	
 	
