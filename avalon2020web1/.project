@@ -3,6 +3,7 @@
 	<name>avalon2020web1</name>
 	<comment></comment>
 	<projects>
+		<project>dominio</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
