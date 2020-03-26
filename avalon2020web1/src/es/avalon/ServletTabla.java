@@ -23,6 +23,7 @@ public class ServletTabla extends HttpServlet {
 		pw.println("<table border='1px solid orange'>");
 		
 		for (int i = 0;i<=10;i++) {
+			
 			pw.println("<tr>");	
 			pw.println("<td>");	
 			pw.println("<html><body>"+i+"</body></html>");
