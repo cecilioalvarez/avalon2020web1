@@ -19,13 +19,11 @@ public class ServletRango extends HttpServlet {
 		int numero2=Integer.parseInt(request.getParameter("numero2"));
 		
 		PrintWriter pw=response.getWriter();
-		pw.println("<body>");
-		pw.println("<html>");
+		pw.println("<html><body>");
 		for (int i = numero1;i<=numero2;i++) {
-			pw.println("<html><body>"+i+"</body></html>");
+			pw.println(i);
 		}
-			pw.println("</body>");
-			pw.println("</html>");
+		pw.println("</body></html>");
 	}
 
 }
