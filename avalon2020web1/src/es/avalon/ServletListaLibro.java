@@ -37,11 +37,20 @@ public class ServletListaLibro extends HttpServlet {
 		
 		pw.println("<html><body>");
 		//pw.println("<table><tr>");
-		//pw.println("<table border=2px solid red><tr>");
+		pw.println("<table border=2px solid red><tr>");
+		
+		pw.println("	<tr>");
+		pw.println("<th>ISBN</th>");
+	pw.println("<th>Titulo</th>");
+	pw.println("<th>Autor</th>");
+	pw.println("<th>Precio</th>");
+	pw.println("<th>Categoria</th>");
+	pw.println("</tr>");
+		
 		for(Libro n: listalibros) {
 		
 		pw.print ("<html><body>");
-		pw.println("<p>");	
+		pw.println("<tr>");	
 		
 		pw.println ("<td>" +n.getIsbn()+"</td>");
 		pw.println ("<td>"+n.getTitulo()+"</td>");
@@ -49,9 +58,10 @@ public class ServletListaLibro extends HttpServlet {
 		pw.println ("<td>"+n.getPrecio()+"</td>");
 		pw.println ("<td>"+n.getCategoria()+"</td>");
 		
-		pw.println("</p>");	
+		pw.println("</tr>");	
 			
 		}
+		pw.println("</tr></table>");
 		pw.println ("</body></html>");
 		
 		pw.close();
