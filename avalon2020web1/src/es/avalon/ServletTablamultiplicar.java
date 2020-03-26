@@ -12,26 +12,27 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ServletTablamultiplicar")
 public class ServletTablamultiplicar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ServletTablamultiplicar() {
-        super();
 
-    }
+	public ServletTablamultiplicar() {
+		super();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//if(request.getParameter("numero"))
-		
-		int numero=Integer.parseInt(request.getParameter("numero"));
-		PrintWriter pw=response.getWriter();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// if(request.getParameter("numero"))
+
+		int numero = Integer.parseInt(request.getParameter("numero"));
+		PrintWriter pw = response.getWriter();
 		pw.println("<body>");
 		pw.println("<html>");
-		for (int i = 0;i<=10;i++) {	
+		for (int i = 0; i <= 10; i++) {
 
-			pw.print("<p>"+numero+"x"+i+" = "+numero*i+"</p>");
+			pw.print("<p>" + numero + "x" + i + " = " + numero * i + "</p>");
 		}
-			pw.println("</body>");
-			pw.println("</html>");
+		pw.println("</html>");
+		pw.println("</body>");
 
 	}
 

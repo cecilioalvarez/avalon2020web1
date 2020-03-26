@@ -23,7 +23,7 @@ public class ServletMayusculas extends HttpServlet {
 		pw.println("<p>El nombre en mayusculas es:");
 		pw.println(nombre.toUpperCase());
 		pw.println("</p>");
-		pw.println("</html></body>");
+		pw.println("</body></html>");
 
 	}
 
