@@ -26,11 +26,11 @@ public class ServletListaLibros extends HttpServlet {
 		Libro milibro5=new Libro("5","python","juan",20,"programacion");
 		
 		ArrayList<Libro> libros = new ArrayList<Libro>();
-		pw.println(libros.add(milibro));
-		pw.println(libros.add(milibro2));
-		pw.println(libros.add(milibro3));
-		pw.println(libros.add(milibro4));
-		pw.println(libros.add(milibro5));
+		libros.add(milibro);
+		libros.add(milibro2);
+		libros.add(milibro3);
+		libros.add(milibro4);
+		libros.add(milibro5);
 	
 		pw.println("<html><body>");
 		
