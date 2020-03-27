@@ -26,7 +26,7 @@ public class Servlet4Combo extends HttpServlet {
 		
 
 		pw.println("<html><body>");
-		pw.println("form action='ServletDetalle'>");
+		pw.println("<form action='ServletDetalle'>");
 		pw.println("<select name='titulo'>");
 		for(Libro l:listalibros) {
 			
