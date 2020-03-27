@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import es.avalon.dominio.Libro;
 
 
-@WebServlet("/ServletListaLibrosJDBC")
-public class ServletListaLibrosJDBC extends HttpServlet {
+@WebServlet("/Servlet1ListaLibrosJDBC")
+public class Servlet1ListaLibrosJDBC extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	
