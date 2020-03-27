@@ -34,6 +34,7 @@ public class ServletListaLibrosJDBC extends HttpServlet {
     		pw.println(l.getAutor());
     		pw.println(l.getPrecio());
     		pw.println(l.getCategoria());
+    		pw.println("<a href='ServletBorrarLibro?isbn="+l.getIsbn()+"'>borrar</a>");
     		pw.println("</p>");
         }
         pw.println("</body></html>");
