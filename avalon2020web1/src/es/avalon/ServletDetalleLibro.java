@@ -30,7 +30,7 @@ public class ServletDetalleLibro extends HttpServlet {
 		pw.println(milibro.getPrecio());
 		pw.println(milibro.getCategoria());
 
-		pw.println("</body></html>");
+		pw.println("</html></body>");
 	}
 
 }
