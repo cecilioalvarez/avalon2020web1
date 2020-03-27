@@ -29,11 +29,9 @@ public class ServletCombo extends HttpServlet {
 		pw.println("<select name='titulo'>");
 		
 		for (Libro l: lista) {
-			
 
 			pw.println("<option>"+l.getTitulo()+"</option>");
 
-			
 		}
 	
 		pw.println("</select>");

@@ -174,13 +174,14 @@ public class Libro {
 		}
 		return lista;
 	}
+	
 	public static Libro buscarPorTitulo(String titulo) {
 
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca2";
 		String usuario = "root";
 		String clave = "";
-		String consulta = "select * from Libros where titulo='"+titulo+"'";
+		String consulta = "SELECT * from Libros WHERE Titulo='"+titulo+"';";
 		Libro libro = null;
 
 		try {
@@ -199,6 +200,40 @@ public class Libro {
 			e.printStackTrace();
 		}
 		return libro;
+	}
+	
+	public static ArrayList<Libro> buscarTodosOrdenado() {
+
+		Connection conexion;
+
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String usuario = "root";
+		String clave = "";
+
+		String consulta = "select * from Libros order by titulo";
+
+		ArrayList<Libro> lista = new ArrayList<Libro>();
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs = sentencia.executeQuery(consulta);
+
+			while (rs.next()) {
+
+				Libro libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"),
+						rs.getInt("precio"), rs.getString("categoria"));
+
+				lista.add(libro);
+
+			}
+
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
 	}
 	
 	

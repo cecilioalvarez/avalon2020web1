@@ -19,9 +19,8 @@ public class ServletDetalle extends HttpServlet {
 			throws ServletException, IOException {
 
 		PrintWriter pw = response.getWriter();
-
 		String titulo = request.getParameter("titulo");
-
+		
 		Libro libro = Libro.buscarPorTitulo(titulo);
 
 		pw.println("<html><body>");
@@ -33,6 +32,7 @@ public class ServletDetalle extends HttpServlet {
 		pw.println("<p>"+libro.getCategoria()+"</p>");
 
 		pw.println("</body></html>");
+		pw.close();
 
 	}
 
