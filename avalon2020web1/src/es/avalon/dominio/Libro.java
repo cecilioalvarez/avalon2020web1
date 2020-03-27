@@ -136,5 +136,37 @@ public class Libro {
 		}
 
 	}
+	
+public void borrar() {
+		
+		
+		String consulta= "delete from Libros where isbn='" +getIsbn()+" ' ";
+
+		Connection conexion;
+		String url="jdbc:mysql://localhost:3306/biblioteca";
+		String usuario="root";
+		String clave="";
+			
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion=DriverManager.getConnection(url,usuario,clave);
+			
+			//sentencia SQL por lo tanto
+			// a la conexion que nos cree una opcion de ejecutar una sentencia
+			Statement sentencia=conexion.createStatement();
+			sentencia.execute(consulta);
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }
