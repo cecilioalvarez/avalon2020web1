@@ -174,6 +174,32 @@ public class Libro {
 		}
 		return lista;
 	}
+	public static Libro buscarPorTitulo(String titulo) {
+
+		Connection conexion;
+		String url = "jdbc:mysql://localhost:3306/biblioteca2";
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros where titulo='"+titulo+"'";
+		Libro libro = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs = sentencia.executeQuery(consulta);
+
+			rs.next();
+			
+				libro = new Libro(rs.getString("isbn"), rs.getString("titulo"),rs.getString("autor"), rs.getInt("precio"),rs.getString("categoria"));
+			
+
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return libro;
+	}
 	
 	
 	

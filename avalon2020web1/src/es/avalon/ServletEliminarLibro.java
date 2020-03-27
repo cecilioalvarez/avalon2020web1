@@ -25,17 +25,19 @@ public class ServletEliminarLibro extends HttpServlet {
 		
 		Libro milibro = new Libro(isbn);
 		
-		
-		PrintWriter pw = response.getWriter();
-		pw.println("<html><body>");
-		pw.println("El siguiente libro ha sido eliminado de la base de datos:<br>");
-		
-		pw.println(milibro.getIsbn());
-
-		pw.println("</body></html>");
-		pw.close();
+		//SOLO PUEDES USAR UN RESPONSE POR SERVLET (O IMPRIMO O REDIRECCIONO)
+//		PrintWriter pw = response.getWriter();
+//		pw.println("<html><body>");
+//		pw.println("El siguiente libro ha sido eliminado de la base de datos:<br>");
+//		
+//		pw.println(milibro.getIsbn());
+//
+//		pw.println("</body></html>");
+//		pw.close();
 		
 		milibro.eliminar();
+		//Redirecciona otra ver a listar todos los libros
+		response.sendRedirect("ServletListaLibrosJDBC");
 
 	}
 
