@@ -42,6 +42,8 @@ public class ServletListaLibrosJDBC extends HttpServlet {
 			pw.println("<td>"+l.getAutor()+"</td>");
 			pw.println("<td>"+l.getPrecio()+"</td>");
 			pw.println("<td>"+l.getCategoria()+"</td>");
+			//Añade hipervinculo referenciando a ServletEliminarLibro
+			pw.println("<td><a href='ServletEliminarLibro?isbn="+l.getIsbn()+"'>borrar</a></td>");
 			pw.println("</tr>");
 
 			

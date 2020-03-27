@@ -98,13 +98,14 @@ public class Libro {
 		String consulta = "delete from Libros where isbn='" + this.getIsbn() + "'";
 
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usuario, clave);
 			Statement sentencia = conexion.createStatement();
 			sentencia.execute(consulta);
 
 			System.out.println(conexion);
 
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
