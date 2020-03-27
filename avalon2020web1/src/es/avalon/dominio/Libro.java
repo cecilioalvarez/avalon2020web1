@@ -64,6 +64,11 @@ public class Libro {
 		this.categoria = categoria;
 	}
 
+	public Libro(String isbn) {
+		super();
+		this.isbn = isbn;
+	}
+
 	public static ArrayList<Libro> buscarTodos() {
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
@@ -102,13 +107,41 @@ public class Libro {
 		return lista;
 	}
 
+	public static Libro buscarPorTitulo(String titulo) {
+		Connection conexion;
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros where titulo='" + titulo + "'";
+		Libro libro=null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs = sentencia.executeQuery(consulta);
+			rs.next();
+
+			  libro= new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"),
+					rs.getInt("precio"), rs.getString("categoria"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// retorno la lista de objetos
+		return libro;
+	}
+
 	public void insertar() {
 
 		String consulta = "insert into Libros (isbn,titulo,autor,precio,categoria) values";
-		consulta = consulta + " (' " + this.getIsbn() + " ',' " + this.getTitulo() + " ',' " + this.getAutor() + " ', "
-				+ this.getPrecio() + " ,' " + this.getCategoria() + " ')";
+		consulta = consulta + " ('" + this.getIsbn() + "','" + this.getTitulo() + "','" + this.getAutor() + "', "
+				+ this.getPrecio() + ",'" + this.getCategoria() + "')";
 		System.out.println(consulta);
-	
+
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String usuario = "root";
@@ -124,6 +157,34 @@ public class Libro {
 			sentencia.execute(consulta);
 
 		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void borrar() {
+
+		String consulta = "delete from Libros where isbn='" + getIsbn() + "'";
+
+		Connection conexion;
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String usuario = "root";
+		String clave = "";
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+
+			// sentencia SQL por lo tanto
+			// a la conexion que nos cree una opcion de ejecutar una sentencia
+			Statement sentencia = conexion.createStatement();
+			sentencia.execute(consulta);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

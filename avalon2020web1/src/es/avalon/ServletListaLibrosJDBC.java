@@ -37,6 +37,9 @@ public class ServletListaLibrosJDBC extends HttpServlet {
 			pw.println(l.getAutor());
 			pw.println(l.getPrecio());
 			pw.println(l.getCategoria());
+			//como generar un link en html y que lo dibuje el servlet
+			//<a href='ServletBorrar?isbn=1'>borrar</a>
+			pw.println("<a href='ServletBorrar?isbn="+l.getIsbn()+"'>borrar</a>");
 			pw.println("</p>");
 
 		}
