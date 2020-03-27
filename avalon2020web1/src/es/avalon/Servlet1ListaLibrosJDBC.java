@@ -36,6 +36,10 @@ public class Servlet1ListaLibrosJDBC extends HttpServlet {
 			pw.println(l.getAutor());
 			pw.println(l.getPrecio());
 			pw.println(l.getCategoria());
+			
+			//ahora estoy poniendo este tratando de mejorar el que hemos hecho de borrar
+			//dando la opcion a borrar
+			pw.println("<a href='Servlet3removeLibrosJDBC?ISBN="+l.getIsbn()+"'>borrar</a>");
 			pw.println("</p>");
 
 			}

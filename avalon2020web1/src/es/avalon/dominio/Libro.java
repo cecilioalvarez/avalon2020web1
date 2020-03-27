@@ -78,6 +78,72 @@ public class Libro {
 		}
 	
 	}
+	public void borrar() {
+		Connection conexion;
+		String url ="jdbc:mysql://localhost/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		String usuario = "root";
+		String clave = "";
+		
+		String consulta = "delete from Libros where isbn='"+this.getIsbn()+"'";
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			sentencia.execute(consulta);
+			System.out.println(conexion);
+		} catch (SQLException |  ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
+	public void actualizar() {
+		Connection conexion;
+		String url ="jdbc:mysql://localhost/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		String usuario = "root";
+		String clave = "";
+
+		String consulta =  "update Libros set titulo='"+getTitulo()+"',autor='"+getAutor()+"',precio="+getPrecio()+",categoria='"+getCategoria()+"' where isbn='"+getIsbn()+"'";
+		System.out.println(consulta);
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			sentencia.execute(consulta);
+			System.out.println(conexion);
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
+	public  static Libro buscarPorTitulo(String titulo){
+		Connection conexion;
+		String url ="jdbc:mysql://localhost/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros where titulo='"+titulo+"'";
+		Libro libro=null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs=sentencia.executeQuery(consulta);
+						
+				libro=new Libro(rs.getString("isbn"),
+				rs.getString("titulo"),
+				rs.getString("autor"),
+				rs.getInt("precio"),
+				rs.getString("categoria"));
+				
+			
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	return libro;
+	}
 	
 	public static ArrayList<Libro> buscarTodos(){
 		Connection conexion;
