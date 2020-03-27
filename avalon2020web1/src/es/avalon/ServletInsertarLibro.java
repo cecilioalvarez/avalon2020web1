@@ -22,10 +22,15 @@ public class ServletInsertarLibro extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter pw = response.getWriter();
-
 		
-
+		String isbn= request.getParameter("isbn");
+		String titulo= request.getParameter("titulo");
+		String autor= request.getParameter("autor");
+		int precio= Integer.parseInt(request.getParameter("precio"));
+		String categoria= request.getParameter("categoria");
 		
+		Libro milibro= new Libro(isbn, titulo,autor,precio,categoria);
+		milibro.insertar();
 	}
 
 }
