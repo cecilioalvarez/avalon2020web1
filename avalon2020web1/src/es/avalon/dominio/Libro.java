@@ -102,11 +102,37 @@ public class Libro {
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		// retorno la lista de objetos
 		return lista;
 	}
-	
+
+	public static Libro buscarPorTitulo(String titulo) {
+		Connection conexion;
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros where titulo='" + titulo + "'";
+		Libro libro=null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs = sentencia.executeQuery(consulta);
+			rs.next();
+
+			libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"), rs.getInt("precio"),
+					rs.getString("categoria"));
+
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		// retorno la lista de objetos
+		return libro;
+	}
+
 	public void insertar() {
 
 		String consulta = "insert into Libros (isbn,titulo,autor,precio,categoria) values";
@@ -136,29 +162,26 @@ public class Libro {
 		}
 
 	}
-	
-public void borrar() {
-		
-		
-		String consulta= "delete from Libros where isbn='" +getIsbn()+" ' ";
+
+	public void borrar() {
+
+		String consulta = "delete from Libros where isbn='" + getIsbn() + "'";
 
 		Connection conexion;
-		String url="jdbc:mysql://localhost:3306/biblioteca";
-		String usuario="root";
-		String clave="";
-			
-		
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String usuario = "root";
+		String clave = "";
+		System.out.println(consulta);
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion=DriverManager.getConnection(url,usuario,clave);
-			
-			//sentencia SQL por lo tanto
+			conexion = DriverManager.getConnection(url, usuario, clave);
+
+			// sentencia SQL por lo tanto
 			// a la conexion que nos cree una opcion de ejecutar una sentencia
-			Statement sentencia=conexion.createStatement();
+			Statement sentencia = conexion.createStatement();
 			sentencia.execute(consulta);
-			
-			
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -166,7 +189,7 @@ public void borrar() {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

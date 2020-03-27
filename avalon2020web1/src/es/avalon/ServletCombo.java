@@ -12,33 +12,30 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.avalon.dominio.Libro;
 
-@WebServlet("/ServletListaLibrosjdbc")
-public class ServletListaLibrosjdbc extends HttpServlet {
+@WebServlet("/ServletCombo")
+public class ServletCombo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		PrintWriter pw = response.getWriter();
-		ArrayList<Libro> lista = new ArrayList<Libro>();
-		lista = Libro.buscarTodos();
+		ArrayList<Libro> listaLibros = Libro.buscarTodos();
 
 		pw.println("<html><body>");
+		pw.println("<form  action='ServletDetalleLibro'>");
+		pw.println("<select name='Titulo'>");
 
-		for (Libro l : lista) {
-			pw.println("<p>");
-			pw.println(l.getIsbn());
-			pw.println(l.getTitulo());
-			pw.println(l.getAutor());
-			pw.println(l.getPrecio());
-			pw.println(l.getCategoria());
-			pw.println("<a href='ServletBorrarLink?isbn="+l.getIsbn()+"'>borrar</a>");
-			pw.println("</p>");
+		for (Libro l : listaLibros) {
+
+			pw.println("<option>" + l.getTitulo() + "</option>");
 
 		}
+		pw.println("</select>");
+		pw.println("<input type='submit' value='enviar' />");
 
-		pw.println("</body></html>");
-		pw.close();
+		pw.println("</form>");
+		pw.println("</html></body>");
 
 	}
 
