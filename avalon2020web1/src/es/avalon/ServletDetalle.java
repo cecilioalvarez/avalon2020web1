@@ -20,26 +20,18 @@ public class ServletDetalle extends HttpServlet {
 
 		PrintWriter pw = response.getWriter();
 		String titulo = request.getParameter("titulo");
-		
 		Libro libro = Libro.buscarPorTitulo(titulo);
 
 		pw.println("<html><body>");
 
-		pw.println("<p>"+libro.getIsbn()+"</p>");
-		pw.println("<p>"+libro.getTitulo()+"</p>");
-		pw.println("<p>"+libro.getAutor()+"</p>");
-		pw.println("<p>"+libro.getPrecio()+"</p>");
-		pw.println("<p>"+libro.getCategoria()+"</p>");
+		pw.println("<p>" + libro.getIsbn() + "</p>");
+		pw.println("<p>" + libro.getTitulo() + "</p>");
+		pw.println("<p>" + libro.getAutor() + "</p>");
+		pw.println("<p>" + libro.getPrecio() + "</p>");
+		pw.println("<p>" + libro.getCategoria() + "</p>");
 
 		pw.println("</body></html>");
 		pw.close();
 
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

@@ -181,7 +181,7 @@ public class Libro {
 		String url = "jdbc:mysql://localhost:3306/biblioteca2";
 		String usuario = "root";
 		String clave = "";
-		String consulta = "SELECT * from Libros WHERE Titulo='"+titulo+"';";
+		String consulta = "select * from Libros where titulo='"+titulo+"'";
 		Libro libro = null;
 
 		try {
@@ -189,7 +189,6 @@ public class Libro {
 			conexion = DriverManager.getConnection(url, usuario, clave);
 			Statement sentencia = conexion.createStatement();
 			ResultSet rs = sentencia.executeQuery(consulta);
-
 			rs.next();
 			
 				libro = new Libro(rs.getString("isbn"), rs.getString("titulo"),rs.getString("autor"), rs.getInt("precio"),rs.getString("categoria"));

@@ -15,40 +15,28 @@ import es.avalon.dominio.Libro;
 @WebServlet("/ServletCombo")
 public class ServletCombo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		PrintWriter pw = response.getWriter();
-		
 		ArrayList<Libro> lista = Libro.buscarTodos();
-		
-		
+
 		pw.println("<html><body>");
 		pw.println("<form action='ServletDetalle'>");
 		pw.println("<select name='titulo'>");
-		
-		for (Libro l: lista) {
 
-			pw.println("<option>"+l.getTitulo()+"</option>");
+		for (Libro l : lista) {
+
+			pw.println("<option>" + l.getTitulo() + "</option>");
 
 		}
-	
+
 		pw.println("</select>");
-		pw.println("<input type='submit' value='enviar' />");
-		
+		pw.println("<input type='submit' value='enviar'/>");
 		pw.println("</form>");
 		pw.println("</body></html>");
 		pw.close();
-		
-	
-	
+
 	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
