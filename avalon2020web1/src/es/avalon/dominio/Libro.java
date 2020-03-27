@@ -131,7 +131,7 @@ public class Libro {
 			conexion = DriverManager.getConnection(url, usuario, clave);
 			Statement sentencia = conexion.createStatement();
 			ResultSet rs=sentencia.executeQuery(consulta);
-						
+				rs.next();		
 				libro=new Libro(rs.getString("isbn"),
 				rs.getString("titulo"),
 				rs.getString("autor"),
@@ -139,7 +139,7 @@ public class Libro {
 				rs.getString("categoria"));
 				
 			
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	return libro;

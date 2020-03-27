@@ -18,11 +18,13 @@ public class ServletDetalle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		PrintWriter pw=response.getWriter();
+		
 		Libro milibro=Libro.buscarPorTitulo(request.getParameter("titulo"));
+		
 		pw.println("<html><body>");
 		pw.println(milibro.getIsbn());
-		pw.println(milibro.getAutor());
 		pw.println(milibro.getTitulo());
+		pw.println(milibro.getAutor());	
 		pw.println(milibro.getPrecio());	
 		pw.println(milibro.getCategoria());
 		pw.println("</html></body>");
