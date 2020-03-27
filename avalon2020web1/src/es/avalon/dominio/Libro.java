@@ -178,7 +178,7 @@ public class Libro {
 	public static Libro buscarPorTitulo(String titulo) {
 
 		Connection conexion;
-		String url = "jdbc:mysql://localhost:3306/biblioteca2";
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String usuario = "root";
 		String clave = "";
 		String consulta = "select * from Libros where titulo='"+titulo+"'";
