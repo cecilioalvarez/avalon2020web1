@@ -13,38 +13,39 @@ import javax.servlet.http.HttpServletResponse;
 import es.avalon.dominio.Libro;
 
 /**
- * Servlet implementation class ServletListaLibros
+ * Servlet implementation class ServletCombo
  */
-@WebServlet("/ServletListaLibrosJDBC")
-public class ServletListaLibrosJDBC extends HttpServlet {
+@WebServlet("/ServletCombo")
+public class ServletCombo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		PrintWriter pw=response.getWriter();
+
+PrintWriter pw=response.getWriter();
 		
 		ArrayList<Libro> milista= new ArrayList<Libro>();
 		
 		milista=Libro.buscarTodos();
 	
 		pw.println("<html><body>");
+		pw.println("<form action='ServletDetalle'>");
+		pw.println("<p>");
+		pw.println("<select>");
 		
 		for (Libro milibro:milista) {
 			
-			pw.println("<p>");
-			pw.println(milibro.getIsbn());
+			pw.println("<option>");
 			pw.println(milibro.getTitulo());
-			pw.println(milibro.getAutor());
-			pw.println(milibro.getPrecio());
-			pw.println(milibro.getCategoria());
-			// como generar un link en html y que los dibuje en el servlet
-			// <a hred=!ServletLibroBorrar?isbn=1>borrar</a>
-			pw.println("<a href='ServletLibroBorrar?isbn="+milibro.getIsbn()+"'>borrar</a>");
-			pw.println("</p>");
-			
+			pw.println("</option>");
 		}
+		
+		pw.println("</select>");
+		pw.println("</p>");
+		pw.println("<input type='submit' value='enviar'/>");
+		pw.print("</form>");
 		pw.println("</body></html>");
 		pw.close();
 	}
+
 
 }

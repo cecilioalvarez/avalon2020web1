@@ -12,25 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import es.avalon.dominio.Libro;
 
 /**
- * Servlet implementation class ServletLibroInsertar
+ * Servlet implementation class ServletLibroBorrar
  */
-@WebServlet("/ServletLibroInsertar")
-public class ServletLibroInsertar extends HttpServlet {
+@WebServlet("/ServletLibroBorrar")
+public class ServletLibroBorrar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String isbn=request.getParameter("isbn");
-		String titulo=request.getParameter("titulo");
-		String autor=request.getParameter("autor");
-		int precio=Integer.parseInt(request.getParameter("precio"));
-		String categoria=request.getParameter("categoria");
-
-		Libro libro=new Libro(isbn, titulo, autor, precio, categoria);
-		libro.insertar();
-			
+		
+		Libro libro=new Libro(isbn);
+		libro.borrar();
+		// esta es una redireccion que nos permite volver al listado y mostrar uno menos
+		response.sendRedirect("ServletListaLibrosJDBC");
+		
 		PrintWriter pw=response.getWriter();
-		pw.println("Libro insertado en la base de datos");
+		pw.println("Libro borrado");
+		
 	}
 
 

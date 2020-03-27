@@ -12,25 +12,30 @@ import javax.servlet.http.HttpServletResponse;
 import es.avalon.dominio.Libro;
 
 /**
- * Servlet implementation class ServletLibroInsertar
+ * Servlet implementation class ServletDetalle
  */
-@WebServlet("/ServletLibroInsertar")
-public class ServletLibroInsertar extends HttpServlet {
+@WebServlet("/ServletDetalle")
+public class ServletDetalle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String isbn=request.getParameter("isbn");
-		String titulo=request.getParameter("titulo");
-		String autor=request.getParameter("autor");
-		int precio=Integer.parseInt(request.getParameter("precio"));
-		String categoria=request.getParameter("categoria");
-
-		Libro libro=new Libro(isbn, titulo, autor, precio, categoria);
-		libro.insertar();
-			
 		PrintWriter pw=response.getWriter();
-		pw.println("Libro insertado en la base de datos");
+		
+		String titulo=request.getParameter("titulo");
+		
+		Libro milibro=Libro.buscarPorTitulo(titulo);
+		
+		pw.println("<html><body>");
+		
+		pw.println("<p>"+milibro.getTitulo()+"</p>");
+		pw.println("<p>"+milibro.getIsbn()+"</p>");
+		pw.println("<p>"+milibro.getAutor()+"</p>");
+		pw.println("<p>"+milibro.getPrecio()+"</p>");
+		pw.println("<p>"+milibro.getCategoria()+"</p>");
+		
+		pw.println("</html></body>");
+		
 	}
 
 
