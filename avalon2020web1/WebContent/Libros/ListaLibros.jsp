@@ -29,8 +29,9 @@
 			<td><%=l.getAutor()%></td>
 			<td><%=l.getTitulo()%></td>
 			<td><%=l.getCategoria()%></td>
-			<td><a href="Borrar.jsp?isbn=<%=l.getIsbn() %>">borrar</a></td>
-			<td><a href="VerDetalle.jsp?isbn=<%=l.getIsbn() %>">Ver a detalle</a></td>
+			<td><a href="Borrar.jsp?ISBN=<%=l.getIsbn() %>">borrar</a></td>
+			<td><a href="VerDetalle.jsp?ISBN=<%=l.getIsbn() %>">Ver a detalle</a></td>
+			<td><a href="Editar.jsp?ISBN=<%=l.getIsbn() %>">editar</a></td>
 		</tr>
 		<%} %>
 	
