@@ -31,6 +31,7 @@ lista = Libro.buscarTodos();
 
 			<td><a href="Borrar.jsp?isbn=<%=l.getIsbn()%>">borrar</a></td>		
 			<td><a href="VerDetalle.jsp?isbn=<%=l.getIsbn()%>">detalle</a></td>		
+			<td><a href="Editar.jsp?isbn=<%=l.getIsbn()%>">editar</a></td>		
 		</tr>
 		<%
 			}

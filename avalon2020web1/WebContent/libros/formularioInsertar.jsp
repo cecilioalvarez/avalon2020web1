@@ -23,6 +23,6 @@
 		<p>
 			categoria:<input type="text" name="categoria" />
 		</p>
-		<input type="submit" name="enviar" />
+		<p><input type="submit" name="enviar" /></p>
 </body>
 </html>
