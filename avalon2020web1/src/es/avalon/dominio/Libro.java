@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.TimeZone;
 
 public class Libro {
 	
@@ -66,7 +67,7 @@ public class Libro {
 
 		Connection conexion;
 
-		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String url = "jdbc:mysql://localhost:3306/biblioteca?serverTimezone=" + TimeZone.getDefault().getID();
 		String usuario = "root";
 		String clave = "";
 
@@ -91,7 +92,7 @@ public class Libro {
 
 		Connection conexion;
 
-		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String url = "jdbc:mysql://localhost:3306/biblioteca?serverTimezone=" + TimeZone.getDefault().getID();
 		String usuario = "root";
 		String clave = "";
 
@@ -145,7 +146,7 @@ public class Libro {
 
 		Connection conexion;
 
-		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String url = "jdbc:mysql://localhost:3306/biblioteca?serverTimezone=" + TimeZone.getDefault().getID();
 		String usuario = "root";
 		String clave = "";
 
@@ -233,6 +234,32 @@ public class Libro {
 			e.printStackTrace();
 		}
 		return lista;
+	}
+	
+	public static Libro buscarPorISBN(String isbn) {
+
+		Connection conexion;
+		String url = "jdbc:mysql://localhost:3306/biblioteca?serverTimezone=" + TimeZone.getDefault().getID();
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros where isbn='"+isbn+"'";
+		Libro libro = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs = sentencia.executeQuery(consulta);
+			rs.next();
+			
+				libro = new Libro(rs.getString("isbn"), rs.getString("titulo"),rs.getString("autor"), rs.getInt("precio"),rs.getString("categoria"));
+			
+
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return libro;
 	}
 	
 	

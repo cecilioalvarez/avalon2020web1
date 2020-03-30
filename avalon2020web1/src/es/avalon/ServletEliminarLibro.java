@@ -25,6 +25,11 @@ public class ServletEliminarLibro extends HttpServlet {
 		
 		Libro milibro = new Libro(isbn);
 		
+		
+		milibro.eliminar();
+		//Redirecciona otra ver a listar todos los libros
+		response.sendRedirect("ServletListaLibrosJDBC");
+
 		//SOLO PUEDES USAR UN RESPONSE POR SERVLET (O IMPRIMO O REDIRECCIONO)
 //		PrintWriter pw = response.getWriter();
 //		pw.println("<html><body>");
@@ -34,11 +39,6 @@ public class ServletEliminarLibro extends HttpServlet {
 //
 //		pw.println("</body></html>");
 //		pw.close();
-		
-		milibro.eliminar();
-		//Redirecciona otra ver a listar todos los libros
-		response.sendRedirect("ServletListaLibrosJDBC");
-
 	}
 
 	

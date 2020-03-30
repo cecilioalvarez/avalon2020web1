@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="../ServletInsertarLibro">
+<form action="Insertar.jsp">
 <p>
 ISBN: <input type="text" name="isbn"/>
 </p>
