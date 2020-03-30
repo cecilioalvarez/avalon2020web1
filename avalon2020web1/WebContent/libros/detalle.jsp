@@ -10,16 +10,16 @@
 </head>
 <body>
 <%
-PrintWriter pw= response.getWriter();
 String isbn=request.getParameter("ISBN");		
 Libro libro= new Libro(isbn);
 libro.buscarPorISBN(isbn); 
-
-pw.println(libro.getIsbn());
-pw.println(libro.getTitulo());
-pw.println(libro.getAutor());
-pw.println(libro.getPrecio());
-pw.println(libro.getCategoria());
 %>
+
+<p> isbn: <% libro.getIsbn();%></p>
+<p> titulo:<%  libro.getTitulo();%></p>
+<p> autor:<% libro.getAutor();%></p>
+<p> precio: <% libro.getPrecio();%></p>
+<p> categoria: <% libro.getCategoria();%></p>
+
 </body>
 </html>
