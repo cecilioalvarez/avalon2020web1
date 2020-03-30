@@ -26,7 +26,7 @@ public class ServletExamen extends HttpServlet {
 
 		if (nota >= 5) {
 
-			pw.println("<html><body>has aprobado</body></html>");
+			pw.println("<html><body>has aprobado bien</body></html>");
 		} else {
 			pw.println("<html><body>has suspendido</body></html>");
 		}

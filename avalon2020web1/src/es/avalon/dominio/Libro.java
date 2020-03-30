@@ -71,7 +71,7 @@ public class Libro {
 
 	public static ArrayList<Libro> buscarTodos() {
 		Connection conexion;
-		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String usuario = "root";
 		String clave = "";
 		String consulta = "select * from Libros";
@@ -80,7 +80,7 @@ public class Libro {
 		// con programación orientada a objeto
 		ArrayList<Libro> lista = new ArrayList<Libro>();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usuario, clave);
 			Statement sentencia = conexion.createStatement();
 			ResultSet rs = sentencia.executeQuery(consulta);
@@ -109,14 +109,14 @@ public class Libro {
 
 	public static Libro buscarPorTitulo(String titulo) {
 		Connection conexion;
-		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC\"";
 		String usuario = "root";
 		String clave = "";
 		String consulta = "select * from Libros where titulo='" + titulo + "'";
 		Libro libro=null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usuario, clave);
 			Statement sentencia = conexion.createStatement();
 			ResultSet rs = sentencia.executeQuery(consulta);
@@ -143,12 +143,12 @@ public class Libro {
 		System.out.println(consulta);
 
 		Connection conexion;
-		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String usuario = "root";
 		String clave = "";
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usuario, clave);
 
 			// sentencia SQL por lo tanto
@@ -168,12 +168,12 @@ public class Libro {
 		String consulta = "delete from Libros where isbn='" + getIsbn() + "'";
 
 		Connection conexion;
-		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String usuario = "root";
 		String clave = "";
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usuario, clave);
 
 			// sentencia SQL por lo tanto
