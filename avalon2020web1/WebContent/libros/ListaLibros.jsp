@@ -31,6 +31,8 @@
 			<td><%=l.getAutor()%></td>
 			<td><%=l.getPrecio()%></td>
 			<td><%=l.getCategoria()%></td>
+			<td><a href="detalle.jsp?isbn=<%=l.getIsbn()%>">Detalle</a></td>
+			<td><a href="editar.jsp?isbn=<%=l.getIsbn()%>">Editar</a></td>
 			<td><a href="borrar.jsp?isbn=<%=l.getIsbn()%>">Borrar</a></td>
 		</tr>
 		<%

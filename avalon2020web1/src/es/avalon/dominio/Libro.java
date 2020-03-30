@@ -158,12 +158,63 @@ public class Libro {
 		return libro;
 	}
 	
+	public static Libro detalle(String isbn) {	
+		Connection conexion;
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros where isbn='"+isbn+"'";
+		Libro libro=null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs=sentencia.executeQuery(consulta);
+			rs.next();
+			
+			libro=new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"), rs.getInt("precio"), rs.getString("categoria"));
+					
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		//retorno la lista de objetos
+		return libro;
+	}
+	
 	
 	public void insertar() {
 		
 		
 		String consulta= "insert into Libros (isbn,titulo,autor,precio,categoria) values";
 		consulta=consulta+ " (' "+this.getIsbn()+ " ',' "+this.getTitulo()+" ',' "+this.getAutor()+" ', "+this.getPrecio()+" ,' "+this.getCategoria()+" ')";
+		System.out.println(consulta);
+
+		Connection conexion;
+		String url="jdbc:mysql://localhost:3306/biblioteca";
+		String usuario="root";
+		String clave="";
+			
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion=DriverManager.getConnection(url,usuario,clave);
+			
+			//sentencia SQL por lo tanto
+			// a la conexion que nos cree una opcion de ejecutar una sentencia
+			Statement sentencia=conexion.createStatement();
+			sentencia.execute(consulta);
+			
+			
+			
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+public void salvarr() {
+		
+		
+		String consulta= "update Libros set titulo=' "+this.getTitulo()+" ', autor=' "+this.getAutor()+" ', precio="+this.getPrecio()+", categoria=' "+this.getCategoria()+" '";
 		System.out.println(consulta);
 
 		Connection conexion;
