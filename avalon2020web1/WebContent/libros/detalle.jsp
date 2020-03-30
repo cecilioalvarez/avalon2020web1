@@ -11,15 +11,15 @@
 <body>
 <%
 String isbn=request.getParameter("ISBN");		
-Libro libro= new Libro(isbn);
-libro.buscarPorISBN(isbn); 
+
+Libro libro=Libro.buscarPorISBN(isbn); 
 %>
 
-<p> isbn: <% libro.getIsbn();%></p>
-<p> titulo:<%  libro.getTitulo();%></p>
-<p> autor:<% libro.getAutor();%></p>
-<p> precio: <% libro.getPrecio();%></p>
-<p> categoria: <% libro.getCategoria();%></p>
+<p> isbn: <%=libro.getIsbn()%></p>
+<p> titulo:<%=libro.getTitulo()%></p>
+<p> autor:<%=libro.getAutor()%></p>
+<p> precio: <%=libro.getPrecio()%></p>
+<p> categoria: <%=libro.getCategoria()%></p>
 
 </body>
 </html>

@@ -108,7 +108,8 @@ public void insertar(){
 	
 public static ArrayList<Libro> buscarTodos(){
 	Connection conexion;
-	String url="jdbc:mysql://localhost:3306/biblioteca";
+	String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	
 	String usuario="root";
 	String clave="";
 String consulta = "select * from libros";
@@ -136,7 +137,7 @@ try {
 	rs.getString("autor"),
 	rs.getInt("precio"),
 	rs.getString("categoria"));
-	//añado libro a cada lista
+	//aï¿½ado libro a cada lista
 	lista.add(libro);				
 	
 	}
@@ -151,7 +152,8 @@ return lista;
 
 public static Libro buscarPorTitulo(String titulo){
 	Connection conexion;
-	String url="jdbc:mysql://localhost:3306/biblioteca";
+	String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	
 	String usuario="root";
 	String clave="";
 	String consulta = "select * from libros where titulo='"+titulo+"'";
@@ -212,7 +214,7 @@ try {
 	rs.getString("autor"),
 	rs.getInt("precio"),
 	rs.getString("categoria"));
-	//añado libro a cada lista
+	//aï¿½ado libro a cada lista
 	lista.add(libro);				
 	
 	}
@@ -226,7 +228,8 @@ return lista;
 }
 public static Libro buscarPorISBN(String isbn){
 	Connection conexion;
-	String url="jdbc:mysql://localhost:3306/biblioteca";
+	String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	
 	String usuario="root";
 	String clave="";
 	String consulta = "select * from libros where isbn='"+isbn+"'";
