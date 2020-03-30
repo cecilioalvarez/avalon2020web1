@@ -145,6 +145,32 @@ public class Libro {
 	return libro;
 	}
 	
+	public  Libro buscarPorISBN(String isbn){
+		Connection conexion;
+		String url ="jdbc:mysql://localhost/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros where isbn='"+isbn+"'";
+		Libro libro=null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs=sentencia.executeQuery(consulta);
+				rs.next();		
+				libro=new Libro(rs.getString("isbn"),
+				rs.getString("titulo"),
+				rs.getString("autor"),
+				rs.getInt("precio"),
+				rs.getString("categoria"));
+				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	return libro;
+	}
+	
 	public static ArrayList<Libro> buscarTodos(){
 		Connection conexion;
 		String url ="jdbc:mysql://localhost/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -175,4 +201,36 @@ public class Libro {
 		}
 	return lista;
 	}
+	
+	public static ArrayList<Libro> ordenarPorTitulo(){
+		Connection conexion;
+		String url ="jdbc:mysql://localhost/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros order by titulo";
+		ArrayList<Libro> lista=new ArrayList<Libro>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs=sentencia.executeQuery(consulta);
+			
+			while(rs.next()) {
+				//genero un nuevo libro
+				//al nuevo libro le asigno los datos que me vienen en el resulset
+				
+				Libro libro=new Libro(rs.getString("isbn"),
+				rs.getString("titulo"),
+				rs.getString("autor"),
+				rs.getInt("precio"),
+				rs.getString("categoria"));
+				lista.add(libro);
+				
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	return lista;
+	}
+	
 }
