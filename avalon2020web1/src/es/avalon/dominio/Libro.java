@@ -118,7 +118,7 @@ public class Libro {
 	public void actualizar() {
 		Connection conexion;
 
-		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String url = "jdbc:mysql://localhost:3306/biblioteca?serverTimezone=" + TimeZone.getDefault().getID();
 		String usuario = "root";
 		String clave = "";
 
