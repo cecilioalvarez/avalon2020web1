@@ -1,10 +1,10 @@
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="es.avalon.dominio.Libro"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	ArrayList<Libro> lista = new ArrayList<Libro>();
-lista = Libro.buscarTodos();
+List<Libro> lista = (List<Libro>) request.getAttribute("listaLibros");
 %>
 <!DOCTYPE html>
 <html>

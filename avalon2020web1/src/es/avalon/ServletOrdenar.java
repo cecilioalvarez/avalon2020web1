@@ -3,6 +3,7 @@ package es.avalon;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +20,7 @@ public class ServletOrdenar extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PrintWriter pw = response.getWriter();
-		ArrayList<Libro> lista = new ArrayList<Libro>();
+		List<Libro> lista = new ArrayList<Libro>();
 		lista = Libro.buscarTodosOrdenado();
 
 		pw.println("<html><body>");

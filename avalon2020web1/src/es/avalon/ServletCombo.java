@@ -3,6 +3,7 @@ package es.avalon;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +21,7 @@ public class ServletCombo extends HttpServlet {
 			throws ServletException, IOException {
 
 		PrintWriter pw = response.getWriter();
-		ArrayList<Libro> listaLibros = Libro.buscarTodos();
+		List<Libro> listaLibros = Libro.buscarTodos();
 
 		pw.println("<html><body>");
 		pw.println("<form  action='ServletDetalleLibro'>");

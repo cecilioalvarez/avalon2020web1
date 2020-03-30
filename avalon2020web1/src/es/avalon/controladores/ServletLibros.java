@@ -2,6 +2,7 @@ package es.avalon.controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ public class ServletLibros extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Libro> listaLibros=new ArrayList<Libro>();
+		List<Libro> listaLibros=new ArrayList<Libro>();
 		
 		listaLibros=Libro.buscarTodos();
 		
