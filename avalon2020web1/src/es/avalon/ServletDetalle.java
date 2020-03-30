@@ -28,11 +28,11 @@ public class ServletDetalle extends HttpServlet {
 		
 		pw.println("<html><body>");
 		
-		pw.println("<p>"+milibro.getTitulo()+"</p>");
-		pw.println("<p>"+milibro.getIsbn()+"</p>");
-		pw.println("<p>"+milibro.getAutor()+"</p>");
-		pw.println("<p>"+milibro.getPrecio()+"</p>");
-		pw.println("<p>"+milibro.getCategoria()+"</p>");
+		pw.println("<p> TITULO: "+milibro.getTitulo()+"</p>");
+		pw.println("<p> ISBN: "+milibro.getIsbn()+"</p>");
+		pw.println("<p> AUTOR: "+milibro.getAutor()+"</p>");
+		pw.println("<p> PRECIO: "+milibro.getPrecio()+"</p>");
+		pw.println("<p> CATEGORIA: "+milibro.getCategoria()+"</p>");
 		
 		pw.println("</html></body>");
 		

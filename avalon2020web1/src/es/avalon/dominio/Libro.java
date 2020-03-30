@@ -183,4 +183,40 @@ public class Libro {
 	
 		return libro;
 	}
+	
+	public static ArrayList<Libro> ordenAlfabetico() {
+		Connection conexion;
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros order by titulo";
+
+		// genero una lista de libros para trabajar de una forma natural
+		// con programación orientada a objeto
+		ArrayList<Libro> lista = new ArrayList<Libro>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs = sentencia.executeQuery(consulta);
+
+			while (rs.next()) {
+
+				// genero un nuevo libro
+				// al nuevo libro le asigno los datos que me vienen en el resultset
+				// propiedad por propiedad
+
+				Libro libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"),
+						rs.getInt("precio"), rs.getString("categoria"));
+				// añado cada libro a la lista
+				lista.add(libro);
+			}
+
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		// retorno la lista de objetos
+		return lista;
+	}
+
 }

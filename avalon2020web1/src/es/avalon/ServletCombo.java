@@ -30,7 +30,7 @@ PrintWriter pw=response.getWriter();
 		pw.println("<html><body>");
 		pw.println("<form action='ServletDetalle'>");
 		pw.println("<p>");
-		pw.println("<select>");
+		pw.println("<select name='titulo'>");
 		
 		for (Libro milibro:milista) {
 			
