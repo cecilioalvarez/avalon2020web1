@@ -174,7 +174,7 @@ public class Libro {
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String usuario = "root";
 		String clave = "";
-		String consulta = "select * from Libros where titulo='" + isbn + "'";
+		String consulta = "select * from Libros where isbn='" + isbn + "'";
 		Libro libro=null;
 
 		try {

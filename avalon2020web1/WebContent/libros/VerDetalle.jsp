@@ -3,8 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	ArrayList<Libro> lista = new ArrayList<Libro>();
-lista = Libro.buscarTodos();
+Libro l= Libro.buscarPorIsbn(request.getParameter("isbn"));
 %>
 <!DOCTYPE html>
 <html>
@@ -14,19 +13,14 @@ lista = Libro.buscarTodos();
 </head>
 <body>
 	<table>
-		<%
-			for (Libro l : lista) {
-		%>
 		<tr>
-			<td><%=l.getIsbn()%></td>
-			<td><%=l.getTitulo()%></td>
-			<td><%=l.getAutor()%></td>
-			<td><%=l.getPrecio()%></td>
-			<td><%=l.getCategoria()%></td>
+			<p><td>ISBN: <%=l.getIsbn()%></td></p>
+			<p><td>TITULO: <%=l.getTitulo()%></td></p>
+			<p><td>AUTOR: <%=l.getAutor()%></td></p>
+			<p><td>PRECIO: <%=l.getPrecio()%></td></p>
+			<p><td>CATEGORIA: <%=l.getCategoria()%></td></p>
 		</tr>
-		<%
-			}
-		%>
+
 	</table>
 </body>
 </html>
