@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Libro {
 
@@ -70,7 +71,7 @@ public class Libro {
 		this.isbn = isbn;
 	}
 
-	public static ArrayList<Libro> buscarTodos() {
+	public static List<Libro> buscarTodos() {
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String usuario = "root";
@@ -218,5 +219,62 @@ public class Libro {
 		// retorno la lista de objetos
 		return lista;
 	}
+	
+	public static Libro buscarIsbn(String isbn) {
+		Connection conexion;
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros where isbn='" + isbn + "'";
+		Libro libro=null;
 
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs = sentencia.executeQuery(consulta);
+
+			rs.next();
+
+				libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"),
+						rs.getInt("precio"), rs.getString("categoria"));
+				
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	
+		return libro;
+	}
+public void salvar() {
+		
+		String consulta= "update Libros set titulo='"+getTitulo()+"' , autor='"+getAutor()+"', precio="+getPrecio();
+		consulta=consulta+ " , categoria='"+this.getCategoria()+"' where isbn='" +this.getIsbn()+"'";
+		System.out.println(consulta);
+
+		Connection conexion;
+		String url="jdbc:mysql://localhost:3306/biblioteca";
+		String usuario="root";
+		String clave="";
+			
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion=DriverManager.getConnection(url,usuario,clave);
+			
+			//sentencia SQL por lo tanto
+			// a la conexion que nos cree una opcion de ejecutar una sentencia
+			Statement sentencia=conexion.createStatement();
+			sentencia.execute(consulta);
+			
+			
+			
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+		
+	}
 }
+

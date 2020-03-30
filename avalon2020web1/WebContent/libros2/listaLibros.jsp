@@ -2,6 +2,9 @@
 <%@page import="es.avalon.dominio.Libro"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%
+List<Libro> milista = (List<Libro>) request.getAttribute("listaLibros");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +12,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		ArrayList<Libro> milista = new ArrayList<Libro>();
-
-	milista = Libro.buscarTodos();
-	%>
 	<table>
 		<tr>
 			<th>ISBN</th>
@@ -35,9 +33,10 @@
 			<td><%=l.getAutor()%></td>
 			<td><%=l.getPrecio()%></td>
 			<td><%=l.getCategoria()%></td>
-			<td> <a href="borrar.jsp?isbn=<%=l.getIsbn()%>"> Borrar </a></td>
-			<td> <a href="verDetalle.jsp?isbn=<%=l.getIsbn()%>"> Ver detalle </a></td>
-			<td> <a href="editar.jsp?isbn=<%=l.getIsbn()%>"> Editar </a></td>
+			<td><a href="borrar.jsp?isbn=<%=l.getIsbn()%>"> Borrar </a></td>
+			<td><a href="verDetalle.jsp?isbn=<%=l.getIsbn()%>"> Ver
+					detalle </a></td>
+			<td><a href="editar.jsp?isbn=<%=l.getIsbn()%>"> Editar </a></td>
 		</tr>
 
 		<%
