@@ -25,7 +25,7 @@ public class ServletLibros extends HttpServlet {
 		listaLibros=Libro.buscarTodos();
 		
 		//Crear el despachador y decir a donde vamos
-		RequestDispatcher despachador=request.getRequestDispatcher("Libros2/listaLibros.jsp");	
+		RequestDispatcher despachador=request.getRequestDispatcher("libros2/ListaLibros.jsp");	
 		//Asignar los datos adicionales
 		request.setAttribute("listaLibros", listaLibros);
 		//Reenvio
