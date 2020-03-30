@@ -13,19 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import es.avalon.dominio.Libro;
 
 /**
- * Servlet implementation class ListaLibrosJdbc
+ * Servlet implementation class ServletOrdenar
  */
-@WebServlet("/ListaLibrosJdbc")
-public class ListaLibrosJdbc extends HttpServlet {
+@WebServlet("/ServletOrdenar")
+public class ServletOrdenar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-  
-
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Libro> listalibros= new ArrayList <Libro>();
 		PrintWriter pw= response.getWriter();
-		listalibros=Libro.buscarTodos();
+		listalibros=Libro.ordenarTodos();
 		pw.println("<html><body>");
+		
 		for(Libro n: listalibros) {
 			
 			

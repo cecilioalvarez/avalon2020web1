@@ -19,11 +19,13 @@ public class ServletBorrarLibro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw= response.getWriter();
+		//PrintWriter pw= response.getWriter();
 		String isbn=request.getParameter("ISBN");
-		Libro libro= new Libro (isbn);
-		
+		Libro libro= new Libro(isbn);
 		libro.borrar();
+		//esta es una redireccion que nos permite volver al listado
+		//y mostrar uno menos
+		response.sendRedirect("ListaLibrosJdbc");
 	}
 
 }

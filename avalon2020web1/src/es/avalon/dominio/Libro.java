@@ -56,6 +56,7 @@ public Libro(String isbn) {
 	this.isbn = isbn;
 }
 
+
 public void insertar(){
 	String consulta= "insert into libros (titulo, autor, precio, categoria, isbn) values ('"+this.getTitulo()+"', '"+this.getAutor()+"', "+this.getPrecio()+", '"+this.getCategoria()+"', '"+this.getIsbn()+"' )";
 	System.out.println(consulta); // para aprender que cambia 
@@ -82,7 +83,7 @@ public void insertar(){
 	
 	
 	public void borrar(){
-		String consulta= "delete from libros where isbn=  '"+this.getIsbn()+"' ";
+		String consulta= "delete from libros where isbn='"+this.getIsbn()+"' ";
 		System.out.println(consulta); // para aprender que cambia 
 		Connection conexion;
 		String url="jdbc:mysql://localhost:3306/biblioteca";
@@ -103,7 +104,7 @@ public void insertar(){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				}
+	}
 	
 public static ArrayList<Libro> buscarTodos(){
 	Connection conexion;
@@ -148,5 +149,110 @@ return lista;
 
 }
 
+public static Libro buscarPorTitulo(String titulo){
+	Connection conexion;
+	String url="jdbc:mysql://localhost:3306/biblioteca";
+	String usuario="root";
+	String clave="";
+	String consulta = "select * from libros where titulo='"+titulo+"'";
+	Libro libro=null;
+	
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		conexion=DriverManager.getConnection(url, usuario,clave);
+					
+		Statement sentencia =conexion.createStatement();
+		ResultSet rs= sentencia.executeQuery(consulta);
+		rs.next();
+		libro = new Libro(
+		rs.getString("isbn"),
+		rs.getString("titulo"),
+		rs.getString("autor"),
+		rs.getInt("precio"),
+		rs.getString("categoria"));
+				
+		
+		
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return libro;
+
+
+	
+}
+public static ArrayList<Libro> ordenarTodos(){
+	Connection conexion;
+	String url="jdbc:mysql://localhost:3306/biblioteca";
+	String usuario="root";
+	String clave="";
+String consulta = "select * from libros order by titulo";
+//genero una lista de libros para trabajar de fomra natural
+//con programacion orientada a objetos
+ArrayList <Libro> lista= new ArrayList<Libro>();
+
+
+try {
+	Class.forName("com.mysql.jdbc.Driver");
+	conexion=DriverManager.getConnection(url, usuario,clave);
+				
+	Statement sentencia =conexion.createStatement();
+	ResultSet rs= sentencia.executeQuery(consulta);
+	
+	while (rs.next()) {
+		/*
+		 * gener un nuevo libro
+		 * al nuevo libro le asigo nos datos que me vienen en el resutlset
+		 * propiedad por propiedad
+		 */
+	Libro libro = new Libro(
+	rs.getString("isbn"),
+	rs.getString("titulo"),
+	rs.getString("autor"),
+	rs.getInt("precio"),
+	rs.getString("categoria"));
+	//añado libro a cada lista
+	lista.add(libro);				
+	
+	}
+} catch (Exception e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+return lista;
+
+
+}
+public static Libro buscarPorISBN(String isbn){
+	Connection conexion;
+	String url="jdbc:mysql://localhost:3306/biblioteca";
+	String usuario="root";
+	String clave="";
+	String consulta = "select * from libros where isbn='"+isbn+"'";
+	Libro libro=null;
+	
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		conexion=DriverManager.getConnection(url, usuario,clave);
+					
+		Statement sentencia =conexion.createStatement();
+		ResultSet rs= sentencia.executeQuery(consulta);
+		rs.next();
+		libro = new Libro(
+		rs.getString("isbn"),
+		rs.getString("titulo"),
+		rs.getString("autor"),
+		rs.getInt("precio"),
+		rs.getString("categoria"));
+				
+		
+		
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return libro;
+}
 }
 
