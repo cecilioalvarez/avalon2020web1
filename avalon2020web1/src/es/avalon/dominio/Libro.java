@@ -105,6 +105,30 @@ public void insertar(){
 			e.printStackTrace();
 		}
 	}
+	public void actualizar () {
+		//mete el isbn y cambias todo el resto de datos
+		Connection conexion;
+		String url="jdbc:mysql://localhost:3306/biblioteca";
+		String usuario="root";
+		String clave="";
+		String consulta2= "update libros set titulo='"+this.getTitulo()+"', autor= '"+this.getAutor()+"', precio= "+this.getPrecio()+", categoria= '"+this.getCategoria()+"' where isbn = '"+this.getIsbn()+"'";
+		System.out.println(consulta2);
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion=DriverManager.getConnection(url, usuario,clave);
+			/*
+			 * sentencia de sql por lo tanto
+			 * a la conecion que nos cree una opcion de ejecutar sentencia
+			 */
+			
+			Statement sentencia =conexion.createStatement();
+			sentencia.execute(consulta2);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 public static ArrayList<Libro> buscarTodos(){
 	Connection conexion;
