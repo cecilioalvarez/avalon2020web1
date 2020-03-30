@@ -2,11 +2,9 @@
 <%@page import="es.avalon.dominio.Libro"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%
+   <%
 String ISBN=request.getParameter("ISBN");
-Libro libro=new Libro(ISBN);
-
-libro.buscarPorISBN(ISBN);
+Libro libro=Libro.buscarPorISBN(ISBN);
 
 %>
 <!DOCTYPE html>
@@ -16,9 +14,7 @@ libro.buscarPorISBN(ISBN);
 <title>Insert title here</title>
 </head>
 <body>
-<p>
-	isbn:<%=libro.getIsbn()%>	
-</p>
+<p>ISBN:<%=libro.getIsbn()%></p>
 <p>
 	precio:<%=libro.getPrecio()%>	
 </p>
@@ -32,7 +28,6 @@ libro.buscarPorISBN(ISBN);
 	categoria:<%=libro.getCategoria()%>
 </p>
 	
-
 
 </body>
 </html>

@@ -145,7 +145,7 @@ public class Libro {
 	return libro;
 	}
 	
-	public  Libro buscarPorISBN(String isbn){
+	public static Libro buscarPorISBN(String isbn){
 		Connection conexion;
 		String url ="jdbc:mysql://localhost/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String usuario = "root";
