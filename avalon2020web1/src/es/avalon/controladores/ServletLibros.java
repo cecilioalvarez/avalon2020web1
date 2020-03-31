@@ -36,7 +36,7 @@ public class ServletLibros extends HttpServlet {
 		
 		listaLibros=Libro.buscarTodos();
 		
-		despachador=request.getRequestDispatcher("libros2/ListaLibros.jsp");
+		despachador=request.getRequestDispatcher("libros2/listaLibros.jsp");
 		request.setAttribute("listaLibros", listaLibros);
 		}
 		//Sean de un interface
