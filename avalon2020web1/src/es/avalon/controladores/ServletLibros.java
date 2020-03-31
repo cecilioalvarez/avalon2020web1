@@ -30,6 +30,7 @@ public class ServletLibros extends HttpServlet {
 			if (accion.equals("formularioInsertar")) {
 				despachador = request.getRequestDispatcher("libros2/formularioInsertar.jsp");
 			}
+			//Borrar
 			//Accion=borrar
 			else if (accion.equals("borrar")) {
 				// Recepcionar
@@ -44,21 +45,25 @@ public class ServletLibros extends HttpServlet {
 				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
 			}
 			//Ver detalle
+			//Accion=detalle
 			else if (accion.contentEquals("detalle")) {
 				String isbn = request.getParameter("isbn");
-				Libro libro = new Libro.buscarPorIsbn(isbn);
+				Libro libro = Libro.buscarPorIsbn(isbn);
 				request.setAttribute("libro", libro);
 				despachador = request.getRequestDispatcher("libros2/verDetalle.jsp");
 				
 			}
 			//Editar
+			//Accion=editar
 			else if (accion.contentEquals("editar")) {
 				String isbn = request.getParameter("isbn");
-				Libro libro = new Libro.buscarPorIsbn(isbn);
+				Libro libro = Libro.buscarPorIsbn(isbn);
 				request.setAttribute("libro", libro);
 				despachador = request.getRequestDispatcher("libros2/editar.jsp");
 				
 			}
+			//Salvar
+			//Accion=salvar
 			else if (accion.equals("salvar")) {
 				String isbn = request.getParameter("isbn");
 				String titulo = request.getParameter("titulo");
