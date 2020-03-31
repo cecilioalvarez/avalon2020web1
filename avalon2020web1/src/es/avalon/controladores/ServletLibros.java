@@ -2,6 +2,7 @@ package es.avalon.controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,23 +17,35 @@ import es.avalon.dominio.Libro;
  * Servlet implementation class Libros
  */
 @WebServlet("/Libros")
-public class Libros extends HttpServlet {
+public class ServletLibros extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Libro> listaLibros=new ArrayList<Libro>();
-		listaLibros=Libro.buscarTodos();
-		// crear el despachador y decir donde vamos
-		RequestDispatcher despachador=request.getRequestDispatcher("libros2/listaLibros.jsp");
-		// asignar los datos adicionales
-		request.setAttribute("listaLibros",listaLibros);
-		// reenvio
-		despachador.forward(request,  response);
+		RequestDispatcher despachador=null;
+		String accion=request.getParameter("accion");
 		
-	
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		if (accion!=null) {
+			
+			if (accion.contentEquals("formularioInsertar")) {
+				
+				despachador =request.getRequestDispatcher("libros2/formularioInsertar.jps");
+				
+			}
+		} else {
+			
+			List<Libro> listaLibros=new ArrayList<Libro>();
+			
+			listaLibros=Libro.buscarTodos();
+			
+			despachador=request.getRequestDispatcher("libros2/listaLibros.jsp");
+			request.setAttribute("listaLibros", listaLibros);
+			
+		}
+		
+		// redirige al jsp
+		despachador.forward(request, response);
 		
 	}
 

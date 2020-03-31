@@ -3,6 +3,7 @@ package es.avalon;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +24,7 @@ public class ServletListaLibrosJDBC extends HttpServlet {
 	
 		PrintWriter pw=response.getWriter();
 		
-		ArrayList<Libro> milista= new ArrayList<Libro>();
+		List<Libro> milista= new ArrayList<Libro>();
 		
 		milista=Libro.buscarTodos();
 	

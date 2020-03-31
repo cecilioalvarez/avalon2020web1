@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="es.avalon.dominio.Libro"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -10,7 +11,7 @@
 </head>
 <body>
 	<%
-		ArrayList<Libro> milista = new ArrayList<Libro>();
+		List<Libro> milista = new ArrayList<Libro>();
 
 	milista = Libro.buscarTodos();
 	%>

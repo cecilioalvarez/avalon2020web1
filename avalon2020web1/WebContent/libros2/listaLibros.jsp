@@ -1,4 +1,4 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="es.avalon.dominio.Libro"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -43,7 +43,7 @@ List<Libro> milista = (List<Libro>) request.getAttribute("listaLibros");
 			}
 		%>
 	</table>
-	<a href="formularioInsertar.jsp">insertar</a>
+	<a href="ServletLibros?accion=formularioInsertar">insertar</a>
 
 </body>
 </html>
