@@ -7,35 +7,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Detalle</title>
 </head>
 <body>
-<%
-	Libro l = Libro.detalle(request.getParameter("isbn"));
-%>
+	<%
+		Libro libro = (Libro) request.getAttribute("libro");
+	%>
+
 	<p>
 		ISBN:
-		<%=l.getIsbn()%>
+		<%=libro.getIsbn()%>
 	</p>
 
 	<p>
 		Titulo:
-		<%=l.getTitulo()%>
+		<%=libro.getTitulo()%>
 	</p>
 
 	<p>
 		Autor:
-		<%=l.getAutor()%>
+		<%=libro.getAutor()%>
 	</p>
 
 	<p>
 		Precio:
-		<%=l.getPrecio()%>
+		<%=libro.getPrecio()%>
 	</p>
 
 	<p>
 		Categoria:
-		<%=l.getCategoria()%>
+		<%=libro.getCategoria()%>
 	</p>
+
 </body>
 </html>

@@ -98,7 +98,7 @@ public class Libro {
 		return lista;
 	}
 	
-	public static List<Libro> Ordenar() {	
+	public static ArrayList<Libro> Ordenar() {	
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String usuario = "root";
@@ -159,26 +159,30 @@ public class Libro {
 		return libro;
 	}
 	
-	public static Libro detalle(String isbn) {	
+	
+	public static Libro detalle(String isbn) {
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String usuario = "root";
 		String clave = "";
-		String consulta = "select * from Libros where isbn='"+isbn+"'";
+		String consulta = "select * from Libros where isbn='" + isbn + "'";
 		Libro libro=null;
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usuario, clave);
 			Statement sentencia = conexion.createStatement();
-			ResultSet rs=sentencia.executeQuery(consulta);
+			ResultSet rs = sentencia.executeQuery(consulta);
 			rs.next();
-			
-			libro=new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"), rs.getInt("precio"), rs.getString("categoria"));
-					
+
+			libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"), rs.getInt("precio"),
+					rs.getString("categoria"));
+
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		//retorno la lista de objetos
+
+		// retorno la lista de objetos
 		return libro;
 	}
 	
