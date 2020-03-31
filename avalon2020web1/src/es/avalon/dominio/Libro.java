@@ -130,7 +130,7 @@ public void insertar(){
 		}
 	}
 	
-public static ArrayList<Libro> buscarTodos(){
+public static List<Libro> buscarTodos(){
 	Connection conexion;
 	String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	
@@ -208,7 +208,7 @@ public static Libro buscarPorTitulo(String titulo){
 
 	
 }
-public static ArrayList<Libro> ordenarTodos(){
+public static List<Libro> ordenarTodos(){
 	Connection conexion;
 	String url="jdbc:mysql://localhost:3306/biblioteca";
 	String usuario="root";

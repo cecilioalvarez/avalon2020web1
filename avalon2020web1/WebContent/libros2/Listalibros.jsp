@@ -1,5 +1,5 @@
 <%@page import="es.avalon.dominio.Libro"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,8 +10,7 @@
 </head>
 <body>
 <%
-ArrayList<Libro> lista= new ArrayList<Libro>();
-lista= (ArrayList<Libro>) request.getAttribute("listalibros");
+List<Libro> lista= (List<Libro>) request.getAttribute("Listalibros");
 //lista =Libro.buscarTodos();
 %>
 
@@ -31,13 +30,13 @@ lista= (ArrayList<Libro>) request.getAttribute("listalibros");
 <td><%= l.getAutor() %></td>
 <td><%= l.getPrecio() %></td>
 <td><%= l.getCategoria() %></td>
-<td><a href="borrar.jsp?ISBN=<%= l.getIsbn() %>">borrar</a></td>
-<td><a href="detalle.jsp?ISBN=<%= l.getIsbn() %>">ver detalles</a></td>
-<td><a href="editar.jsp?ISBN=<%= l.getIsbn() %>">editar</a></td>
+<td><a href="ServletLibros?ISBN=<%= l.getIsbn() %>&accion=borrar">borrar</a></td>
+<td><a href="ServletLibros?ISBN=<%= l.getIsbn() %>&accion=detalle">ver detalles</a></td>
+<td><a href="ServletLibros?ISBN=<%= l.getIsbn() %>&accion=editar">editar</a></td>
 </tr>
 <%} %>
 
 </table>
-<a href="FormularioInsertar.jsp">insertar</a>
+<a href="ServletLibros?accion=FormularioInsertar">insertar</a>
 </body>
 </html>
