@@ -20,16 +20,26 @@ import es.avalon.dominio.Libro;
 public class ServletLibros extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		RequestDispatcher despachador=null;	
+		String accion=request.getParameter("accion");
+		
+		if (accion!=null) {
+			
+			if (accion.equals("formularioInsertar")) {
+				despachador=request.getRequestDispatcher("libros2/formularioInsertar.jsp");
+			}
+		}
+		else {
 		
 		List<Libro> listaLibros=new ArrayList<Libro>();
 		
 		listaLibros=Libro.buscarTodos();
 		
-		//Crear el despachador y decir a donde vamos
-		RequestDispatcher despachador=request.getRequestDispatcher("libros2/ListaLibros.jsp");	
-		//Asignar los datos adicionales
+		despachador=request.getRequestDispatcher("libros2/ListaLibros.jsp");
 		request.setAttribute("listaLibros", listaLibros);
-		//Reenvio
+		}
+		//Sean de un interface
 		despachador.forward(request, response);
 
 	}

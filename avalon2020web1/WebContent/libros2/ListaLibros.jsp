@@ -37,7 +37,7 @@ List<Libro> lista = (List<Libro>) request.getAttribute("listaLibros");
 			}
 		%>
 	</table>
-	<a href="formularioInsertar.jsp">insertar</a>
+	<a href="../ServletLibros?accion=formularioInsertar">insertar</a>
 
 </body>
 </html>
