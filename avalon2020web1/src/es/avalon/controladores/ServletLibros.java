@@ -32,7 +32,7 @@ public class ServletLibros extends HttpServlet {
 			List<Libro> listaLibros = new ArrayList<Libro>();
 
 			listaLibros = Libro.buscarTodos();
-
+			despachador = request.getRequestDispatcher("Libros2/FormularioInsertar.jsp");
 			request.setAttribute("listaLibros", listaLibros);
 
 		}
