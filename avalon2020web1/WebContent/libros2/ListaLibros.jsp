@@ -1,11 +1,11 @@
 
+<%@page import="java.util.List"%>
 <%@ page import="es.avalon.dominio.Libro" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-ArrayList<Libro> lista = new ArrayList<Libro>();
-lista = (ArrayList<Libro>) request.getAttribute("listaLibros");
+List<Libro> lista = (List<Libro>) request.getAttribute("listaLibros");
 %>
 
 <!DOCTYPE html>

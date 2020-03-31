@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TimeZone;
 
 public class Libro {
@@ -142,7 +143,7 @@ public class Libro {
 	// Devuelve array list de todos los libros
 	
 	
-	public static ArrayList<Libro> buscarTodos() {
+	public static List<Libro> buscarTodos() {
 
 		Connection conexion;
 
