@@ -15,7 +15,7 @@ Libro libro=Libro.buscarPorISBN(ISBN);
 </head>
 <body>
 
-	<form action="salvar.jps" method="GET">
+	<form action="salvar.jsp" method="GET">
 		<p>
 			ISBN:<input type="text" name="ISBN"  value="<%=libro.getIsbn()%>"/>
 		</p>

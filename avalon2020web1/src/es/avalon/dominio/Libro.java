@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Libro {
 	private String isbn;
@@ -171,7 +172,7 @@ public class Libro {
 	return libro;
 	}
 	
-	public static ArrayList<Libro> buscarTodos(){
+	public static List<Libro> buscarTodos(){
 		Connection conexion;
 		String url ="jdbc:mysql://localhost/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String usuario = "root";
@@ -202,7 +203,7 @@ public class Libro {
 	return lista;
 	}
 	
-	public static ArrayList<Libro> ordenarPorTitulo(){
+	public static List<Libro> ordenarPorTitulo(){
 		Connection conexion;
 		String url ="jdbc:mysql://localhost/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String usuario = "root";
