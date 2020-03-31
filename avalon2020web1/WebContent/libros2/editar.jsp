@@ -11,13 +11,14 @@ Libro libro= Libro.detalle(request.getParameter("isbn"));
 <title>Insert title here</title>
 </head>
 <body>
-<form action="salvar.jsp">
+<form action="ServletLibros">
 		<p>isbn:<input type="text" name="precio" value="<%=libro.getIsbn()%>/>"/></p>
 		<p>titulo:<input type="text" name="precio" value="<%=libro.getTitulo()%>/>"/></p>
 		<p>autor:<input type="text" name="autor" value="<%=libro.getAutor()%>/>"/></p>
 		<p>precio:<input type="text" name="precio" value="<%=libro.getPrecio()%>/>"/></p>
 		<p>categoria:<input type="text" name="categoria" value="<%=libro.getCategoria()%>/>"/></p>
 		<input type="submit" value="Enviar" />
+		<input type="hidden" name="accion" value="salvar"/>
 	</form>
 
 </body>

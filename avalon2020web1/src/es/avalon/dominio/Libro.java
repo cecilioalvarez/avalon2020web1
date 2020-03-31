@@ -216,33 +216,33 @@ public class Libro {
 			e.printStackTrace();
 		}	
 	}
-public void salvarr() {
-		
-		
-		String consulta= "update Libros set titulo=' "+this.getTitulo()+" ', autor=' "+this.getAutor()+" ', precio="+this.getPrecio()+", categoria=' "+this.getCategoria()+" '";
+	public void salvar() {
+
+		String consulta= "update Libros set titulo='"+getTitulo()+"' , autor='"+getAutor()+"', precio="+getPrecio();
+		consulta=consulta+ " , categoria='"+this.getCategoria()+"' where isbn='" +this.getIsbn()+"'";
 		System.out.println(consulta);
 
 		Connection conexion;
-		String url="jdbc:mysql://localhost:3306/biblioteca";
-		String usuario="root";
-		String clave="";
-			
-		
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String usuario = "root";
+		String clave = "";
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion=DriverManager.getConnection(url,usuario,clave);
-			
-			//sentencia SQL por lo tanto
+			conexion = DriverManager.getConnection(url, usuario, clave);
+
+			// sentencia SQL por lo tanto
 			// a la conexion que nos cree una opcion de ejecutar una sentencia
-			Statement sentencia=conexion.createStatement();
+			Statement sentencia = conexion.createStatement();
 			sentencia.execute(consulta);
-			
-			
-			
-		} catch (SQLException | ClassNotFoundException e) {
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
+
 	}
 	
 	public void borrar() {

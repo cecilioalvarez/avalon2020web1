@@ -31,7 +31,7 @@ List<Libro> lista = (List<Libro>) request.getAttribute("listaLibros");
 
 			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=borrar">borrar</a></td>		
 			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=detalle">detalle</a></td>		
-			<td><a href="Editar.jsp?isbn=<%=l.getIsbn()%>">editar</a></td>		
+			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=editar">editar</a></td>		
 		</tr>
 		<%
 			}

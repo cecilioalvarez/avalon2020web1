@@ -46,8 +46,20 @@ public class ServletLibros extends HttpServlet {
 				request.setAttribute("libro", libro);
 				// Redirigir
 				despachador = request.getRequestDispatcher("libros2/detalle.jsp");
-			}else if(accion.equals("editar")) {
-				String isbn= request.getParameter("isbn");
+			}else if(accion.equals("salvar")) {
+				String isbn = request.getParameter("isbn");
+				String titulo = request.getParameter("titulo");
+				String autor = request.getParameter("autor");
+				int precio = Integer.parseInt(request.getParameter("precio"));
+				String categoria = request.getParameter("categoria");
+				
+				Libro milibro = new Libro(isbn, titulo, autor, precio,categoria);
+				milibro.salvar();
+				
+				List<Libro> listaLibros= Libro.buscarTodos();
+				request.setAttribute("listaLibros", listaLibros);
+
+				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
 				
 				Libro libro = Libro.detalle(isbn);
 				request.setAttribute("libro", libro);
