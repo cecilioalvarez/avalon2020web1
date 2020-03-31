@@ -60,6 +60,7 @@ public class ServletLibros extends HttpServlet {
 					List<Libro> listalibros= new ArrayList<Libro>();
 					listalibros= Libro.buscarTodos();
 					request.setAttribute("Listalibros", listalibros);
+					despachador= request.getRequestDispatcher("libros2/Listalibros.jsp");
 				}
 						
 			}
