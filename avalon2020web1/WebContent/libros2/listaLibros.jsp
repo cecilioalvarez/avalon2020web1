@@ -29,9 +29,9 @@ List<Libro> lista = (List<Libro>) request.getAttribute("listaLibros");
 			<td><%=l.getTitulo()%></td>
 			<td><%=l.getAutor()%></td>
 
-			<td><a href="Borrar.jsp?isbn=<%=l.getIsbn()%>">borrar</a></td>		
-			<td><a href="VerDetalle.jsp?isbn=<%=l.getIsbn()%>">detalle</a></td>		
-			<td><a href="Editar.jsp?isbn=<%=l.getIsbn()%>">editar</a></td>		
+			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=borrar">borrar</a></td>		
+			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=detalle">detalle</a></td>		
+			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=editar">editar</a></td>		
 		</tr>
 		<%
 			}

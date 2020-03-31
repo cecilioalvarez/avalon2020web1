@@ -30,8 +30,47 @@ public class ServletLibros extends HttpServlet {
 			if (accion.equals("formularioInsertar")) {
 				despachador = request.getRequestDispatcher("libros2/formularioInsertar.jsp");
 			}
-			// Accion=insertar
-			else {
+			//Accion=borrar
+			else if (accion.equals("borrar")) {
+				// Recepcionar
+				String isbn = request.getParameter("isbn");
+				//Borrar
+				Libro l = new Libro(isbn);
+				l.borrar();
+				// Cargar nuevo listado
+				List<Libro> listaLibros = Libro.buscarTodos();
+				request.setAttribute("listaLibros", listaLibros);
+				// Redirigir
+				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
+			}
+			//Ver detalle
+			else if (accion.contentEquals("detalle")) {
+				despachador = request.getRequestDispatcher("libros2/verDetalle.jsp");
+				
+			}
+			//Editar
+			else if (accion.contentEquals("editar")) {
+				despachador = request.getRequestDispatcher("libros2/editar.jsp");
+				
+			}
+			else if (accion.equals("salvar")) {
+				String isbn = request.getParameter("isbn");
+				String titulo = request.getParameter("titulo");
+				String autor = request.getParameter("autor");
+				int precio = Integer.parseInt(request.getParameter("precio"));
+				String categoria = request.getParameter("categoria");
+				//Salvar
+				Libro milibro = new Libro(isbn, titulo, autor, precio, categoria);
+				milibro.salvar();
+				// Cargar nuevo listado
+				List<Libro> listaLibros = Libro.buscarTodos();
+				request.setAttribute("listaLibros", listaLibros);
+				// Redirigir
+				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
+			}
+			
+			// Accion=insertar este else es lo mismo que -->//else if (accion.equals("formularioInsertar")) {
+			else{
 				// Recepcionar
 				String isbn = request.getParameter("isbn");
 				String titulo = request.getParameter("titulo");
@@ -47,6 +86,7 @@ public class ServletLibros extends HttpServlet {
 				// Redirigir
 				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
 			}
+			
 		}
 
 		// no hay acion
