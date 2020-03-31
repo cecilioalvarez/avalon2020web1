@@ -21,17 +21,25 @@ public class ServletLibros extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher despachador= null;
+		String accion= request.getParameter("accion");
 		
-		List<Libro> listalibros=new ArrayList<Libro>();
-		
-		listalibros=Libro.buscarTodos();
-		
-		RequestDispatcher despachador= request.getRequestDispatcher("libros2/ListaLibros.jsp");
-		
-		request.setAttribute("listaLibros", listalibros);
-		
+		if (accion !=null) {
+			if (accion.equals("formularioInsertar")) {
+				despachador= request.getRequestDispatcher("libro2/formularioInsertar.jsp");
+			}
+			
+		}else {
+			List<Libro> listalibros=new ArrayList<Libro>();
+			
+			listalibros=Libro.buscarTodos();
+			
+			despachador= request.getRequestDispatcher("libro2/listaLibros.jsp");
+			request.setAttribute("listaLibros", listalibros);
+			
+			
+		}
 		despachador.forward(request, response);
-		
 	}
 
 	/**

@@ -41,7 +41,7 @@
 
 
 	</table>
-	<a href="formularioInsertar.jsp">Insertar</a>
+	<a href="../ServletLibros?accion=formularioInsertar">Insertar</a>
 
 </body>
 </html>
