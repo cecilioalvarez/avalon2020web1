@@ -42,27 +42,29 @@ public class ServletLibros extends HttpServlet {
 				despachador= request.getRequestDispatcher("libros2/detalle.jsp");
 		
 			}else if(accion.equals("editar")){
+				String isbn=request.getParameter("ISBN");		
+				Libro libro=Libro.buscarPorISBN(isbn); 
+				request.setAttribute("libro", libro);
 				despachador= request.getRequestDispatcher("libros2/editar.jsp");
 				
-				if (accion.equals("salvar")){
-					
-					String isbn=request.getParameter("ISBN");
-					String titulo=request.getParameter("titulo");
-					String autor=request.getParameter("autor");
-					int precio=Integer.parseInt(request.getParameter("precio"));
-					String categoria=request.getParameter("categoria");
-					//genero libro
-			
-					Libro libro= new Libro (isbn, titulo, autor, precio, categoria);
-					libro.actualizar();
-					//cargo nuevo listado con datos nuevos
-					
-					List<Libro> listalibros= new ArrayList<Libro>();
-					listalibros= Libro.buscarTodos();
-					request.setAttribute("Listalibros", listalibros);
-					despachador= request.getRequestDispatcher("libros2/Listalibros.jsp");
-				}
 						
+			}else if (accion.equals("salvar")){
+				
+				String isbn=request.getParameter("ISBN");
+				String titulo=request.getParameter("titulo");
+				String autor=request.getParameter("autor");
+				int precio=Integer.parseInt(request.getParameter("precio"));
+				String categoria=request.getParameter("categoria");
+				//genero libro
+		
+				Libro libro= new Libro (isbn, titulo, autor, precio, categoria);
+				libro.actualizar();
+				//cargo nuevo listado con datos nuevos
+				
+				List<Libro> listalibros= new ArrayList<Libro>();
+				listalibros= Libro.buscarTodos();
+				request.setAttribute("Listalibros", listalibros);
+				despachador= request.getRequestDispatcher("libros2/Listalibros.jsp");
 			}
 			else {
 

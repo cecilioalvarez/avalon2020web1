@@ -10,9 +10,7 @@
 <body>
 <form action="ServletLibros">
 <% 
-String isbn=request.getParameter("ISBN");		
-Libro libro=Libro.buscarPorISBN(isbn); 
-
+Libro libro=(Libro)request.getAttribute("libro");
 %>
 <p> ISBN:<input type="text" name ="ISBN" value="<%=libro.getIsbn()%>"/></p>
 <p> Titulo:<input type="text" name ="titulo" value="<%=libro.getTitulo()%>" /></p>
