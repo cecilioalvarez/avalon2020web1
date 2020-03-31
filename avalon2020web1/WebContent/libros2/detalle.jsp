@@ -14,30 +14,15 @@
 		Libro libro = (Libro) request.getAttribute("libro");
 	%>
 
-	<p>
-		ISBN:
-		<%=libro.getIsbn()%>
-	</p>
+	<p>ISBN: <%=libro.getIsbn()%></p>
 
-	<p>
-		Titulo:
-		<%=libro.getTitulo()%>
-	</p>
+	<p>Titulo: <%=libro.getTitulo()%></p>
 
-	<p>
-		Autor:
-		<%=libro.getAutor()%>
-	</p>
+	<p>Autor: <%=libro.getAutor()%></p>
 
-	<p>
-		Precio:
-		<%=libro.getPrecio()%>
-	</p>
+	<p>Precio: <%=libro.getPrecio()%></p>
 
-	<p>
-		Categoria:
-		<%=libro.getCategoria()%>
-	</p>
+	<p>Categoria: <%=libro.getCategoria()%></p>
 
 </body>
 </html>
