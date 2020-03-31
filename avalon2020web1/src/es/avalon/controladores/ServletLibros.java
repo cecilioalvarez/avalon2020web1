@@ -45,11 +45,17 @@ public class ServletLibros extends HttpServlet {
 			}
 			//Ver detalle
 			else if (accion.contentEquals("detalle")) {
+				String isbn = request.getParameter("isbn");
+				Libro libro = new Libro.buscarPorIsbn(isbn);
+				request.setAttribute("libro", libro);
 				despachador = request.getRequestDispatcher("libros2/verDetalle.jsp");
 				
 			}
 			//Editar
 			else if (accion.contentEquals("editar")) {
+				String isbn = request.getParameter("isbn");
+				Libro libro = new Libro.buscarPorIsbn(isbn);
+				request.setAttribute("libro", libro);
 				despachador = request.getRequestDispatcher("libros2/editar.jsp");
 				
 			}
