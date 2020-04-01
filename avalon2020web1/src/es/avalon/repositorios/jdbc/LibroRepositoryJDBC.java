@@ -1,4 +1,4 @@
-package es.avalon.repositorios;
+package es.avalon.repositorios.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import es.avalon.dominio.Libro;
 
-public class LibroRepository {
+public class LibroRepositoryJDBC {
 	
 	public static List<Libro> buscarTodos() {
 		Connection conexion;
