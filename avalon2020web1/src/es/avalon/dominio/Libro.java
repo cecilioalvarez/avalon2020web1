@@ -1,15 +1,5 @@
 package es.avalon.dominio;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Vector;
-
 public class Libro {
 
 	private String isbn;
@@ -72,35 +62,33 @@ public class Libro {
 		this.isbn = isbn;
 	}
 
-	
-	public static Libro buscarPorTitulo(String titulo) {
-		Connection conexion;
-		String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC\"";
-		String usuario = "root";
-		String clave = "";
-		String consulta = "select * from Libros where titulo='" + titulo + "'";
-		Libro libro = null;
-
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexion = DriverManager.getConnection(url, usuario, clave);
-			Statement sentencia = conexion.createStatement();
-			ResultSet rs = sentencia.executeQuery(consulta);
-			rs.next();
-
-			libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"), rs.getInt("precio"),
-					rs.getString("categoria"));
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// retorno la lista de objetos
-		return libro;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
+		return result;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Libro other = (Libro) obj;
+		if (isbn == null) {
+			if (other.isbn != null)
+				return false;
+		} else if (!isbn.equals(other.isbn))
+			return false;
+		return true;
+	}
+
+	
+	
 	
 
 	

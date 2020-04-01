@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 Libro libro= (Libro) request.getAttribute("libro");
+
 %>
 <!DOCTYPE html>
 <html>

@@ -1,7 +1,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="es.avalon.dominio.Libro"%>
-<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
