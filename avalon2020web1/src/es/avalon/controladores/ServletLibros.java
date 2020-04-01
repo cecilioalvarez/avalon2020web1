@@ -36,9 +36,12 @@ public class ServletLibros extends HttpServlet {
 			else if (accion.equals("borrar")) {
 				// Recepcionar
 				String isbn = request.getParameter("isbn");
+				
 				//Borrar
-				Libro l = new Libro(isbn);
-				l.borrar();
+				Libro milibro = new Libro(isbn);
+				LibroRepository repositorio= new LibroRepository();
+				repositorio.borrar(milibro);
+				
 				// Cargar nuevo listado
 				List<Libro> listaLibros = LibroRepository.buscarTodos();
 				request.setAttribute("listaLibros", listaLibros);
@@ -49,7 +52,7 @@ public class ServletLibros extends HttpServlet {
 			//Accion=detalle
 			else if (accion.contentEquals("detalle")) {
 				String isbn = request.getParameter("isbn");
-				Libro libro = Libro.buscarPorIsbn(isbn);
+				Libro libro = LibroRepository.buscarPorIsbn(isbn);
 				request.setAttribute("libro", libro);
 				despachador = request.getRequestDispatcher("libros2/verDetalle.jsp");
 				
@@ -58,7 +61,7 @@ public class ServletLibros extends HttpServlet {
 			//Accion=editar
 			else if (accion.contentEquals("editar")) {
 				String isbn = request.getParameter("isbn");
-				Libro libro = Libro.buscarPorIsbn(isbn);
+				Libro libro = LibroRepository.buscarPorIsbn(isbn);
 				request.setAttribute("libro", libro);
 				despachador = request.getRequestDispatcher("libros2/editar.jsp");
 				
@@ -71,9 +74,12 @@ public class ServletLibros extends HttpServlet {
 				String autor = request.getParameter("autor");
 				int precio = Integer.parseInt(request.getParameter("precio"));
 				String categoria = request.getParameter("categoria");
+				
 				//Salvar
 				Libro milibro = new Libro(isbn, titulo, autor, precio, categoria);
-				milibro.salvar();
+				LibroRepository repositorio= new LibroRepository();
+				repositorio.salvar(milibro);
+				
 				// Cargar nuevo listado
 				List<Libro> listaLibros = LibroRepository.buscarTodos();
 				request.setAttribute("listaLibros", listaLibros);
@@ -89,9 +95,12 @@ public class ServletLibros extends HttpServlet {
 				String autor = request.getParameter("autor");
 				int precio = Integer.parseInt(request.getParameter("precio"));
 				String categoria = request.getParameter("categoria");
+				
 				// Insertar
 				Libro milibro = new Libro(isbn, titulo, autor, precio, categoria);
-				milibro.insertar();
+				LibroRepository repositorio=new LibroRepository();
+				repositorio.insertar(milibro);
+				
 				// Cargar nuevo listado
 				List<Libro> listaLibros = LibroRepository.buscarTodos();
 				request.setAttribute("listaLibros", listaLibros);

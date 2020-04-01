@@ -28,6 +28,8 @@ List<Libro> lista = (List<Libro>) request.getAttribute("listaLibros");
 			<td><%=l.getIsbn()%></td>
 			<td><%=l.getTitulo()%></td>
 			<td><%=l.getAutor()%></td>
+			<td><%=l.getPrecio()%></td>
+			<td><%=l.getCategoria()%></td>
 
 			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=borrar">borrar</a></td>		
 			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=detalle">detalle</a></td>		
