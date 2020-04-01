@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.avalon.dominio.Libro;
+import es.avalon.repositorios.LibroRepository;
 import es.avalon.repositorios.jdbc.LibroRepositoryJDBC;
 
 /**
@@ -25,6 +26,7 @@ public class ServletLibros extends HttpServlet {
 
 		RequestDispatcher despachador = null;
 		String accion = request.getParameter("accion");
+		LibroRepository repositorio= new LibroRepositoryJDBC();
 
 		if (accion != null) {
 
@@ -39,11 +41,10 @@ public class ServletLibros extends HttpServlet {
 				
 				//Borrar
 				Libro milibro = new Libro(isbn);
-				LibroRepositoryJDBC repositorio= new LibroRepositoryJDBC();
 				repositorio.borrar(milibro);
 				
 				// Cargar nuevo listado
-				List<Libro> listaLibros = LibroRepositoryJDBC.buscarTodos();
+				List<Libro> listaLibros = repositorio.buscarTodos();
 				request.setAttribute("listaLibros", listaLibros);
 				// Redirigir
 				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
@@ -52,7 +53,7 @@ public class ServletLibros extends HttpServlet {
 			//Accion=detalle
 			else if (accion.contentEquals("detalle")) {
 				String isbn = request.getParameter("isbn");
-				Libro libro = LibroRepositoryJDBC.buscarPorIsbn(isbn);
+				Libro libro = repositorio.buscarPorIsbn(isbn);
 				request.setAttribute("libro", libro);
 				despachador = request.getRequestDispatcher("libros2/verDetalle.jsp");
 				
@@ -61,7 +62,7 @@ public class ServletLibros extends HttpServlet {
 			//Accion=editar
 			else if (accion.contentEquals("editar")) {
 				String isbn = request.getParameter("isbn");
-				Libro libro = LibroRepositoryJDBC.buscarPorIsbn(isbn);
+				Libro libro = repositorio.buscarPorIsbn(isbn);
 				request.setAttribute("libro", libro);
 				despachador = request.getRequestDispatcher("libros2/editar.jsp");
 				
@@ -77,11 +78,10 @@ public class ServletLibros extends HttpServlet {
 				
 				//Salvar
 				Libro milibro = new Libro(isbn, titulo, autor, precio, categoria);
-				LibroRepositoryJDBC repositorio= new LibroRepositoryJDBC();
 				repositorio.salvar(milibro);
 				
 				// Cargar nuevo listado
-				List<Libro> listaLibros = LibroRepositoryJDBC.buscarTodos();
+				List<Libro> listaLibros = repositorio.buscarTodos();
 				request.setAttribute("listaLibros", listaLibros);
 				// Redirigir
 				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
@@ -98,11 +98,10 @@ public class ServletLibros extends HttpServlet {
 				
 				// Insertar
 				Libro milibro = new Libro(isbn, titulo, autor, precio, categoria);
-				LibroRepositoryJDBC repositorio=new LibroRepositoryJDBC();
 				repositorio.insertar(milibro);
 				
 				// Cargar nuevo listado
-				List<Libro> listaLibros = LibroRepositoryJDBC.buscarTodos();
+				List<Libro> listaLibros = repositorio.buscarTodos();
 				request.setAttribute("listaLibros", listaLibros);
 				// Redirigir
 				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
@@ -114,8 +113,7 @@ public class ServletLibros extends HttpServlet {
 		else {
 
 			List<Libro> listaLibros = new ArrayList<Libro>();
-
-			listaLibros = LibroRepositoryJDBC.buscarTodos();
+			listaLibros = repositorio.buscarTodos();
 
 			despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
 			request.setAttribute("listaLibros", listaLibros);

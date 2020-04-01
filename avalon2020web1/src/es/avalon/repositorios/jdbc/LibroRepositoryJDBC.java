@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.avalon.dominio.Libro;
+import es.avalon.repositorios.LibroRepository;
 
-public class LibroRepositoryJDBC {
+public class LibroRepositoryJDBC implements LibroRepository {
 	
-	public static List<Libro> buscarTodos() {
+	@Override
+	public List<Libro> buscarTodos() {
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String usuario = "root";
@@ -48,7 +50,8 @@ public class LibroRepositoryJDBC {
 		return lista;
 	}
 	
-	public static Libro buscarPorTitulo(String titulo) {
+	@Override
+	public Libro buscarPorTitulo(String titulo) {
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String usuario = "root";
@@ -74,7 +77,8 @@ public class LibroRepositoryJDBC {
 		return libro;
 	}
 	
-	public static Libro buscarPorIsbn(String isbn) {
+	@Override
+	public Libro buscarPorIsbn(String isbn) {
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String usuario = "root";
@@ -100,6 +104,7 @@ public class LibroRepositoryJDBC {
 		return libro;
 	}
 	
+	@Override
 	public void insertar(Libro libro) {
 
 		String consulta = "insert into Libros (isbn,titulo,autor,precio,categoria) values";
@@ -130,6 +135,7 @@ public class LibroRepositoryJDBC {
 
 	}
 	
+	@Override
 	public void salvar(Libro libro) {
 
 		String consulta= "update Libros set titulo='"+libro.getTitulo()+"' , autor='"+libro.getAutor()+"', precio="+libro.getPrecio();
@@ -159,6 +165,7 @@ public class LibroRepositoryJDBC {
 
 	}
 
+	@Override
 	public void borrar(Libro libro) {
 
 		String consulta = "delete from Libros where isbn='" + libro.getIsbn() + "'";
