@@ -1,4 +1,4 @@
-package es.avalon.dominio;
+package es.avalon.repositorios;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,80 +8,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Libro {
+import es.avalon.dominio.Libro;
 
-	private String isbn;
-	private String titulo;
-	private String autor;
-	private int precio;
-	private String categoria;
-
-	// Getters y Setters
-	public String getIsbn() {
-		return isbn;
-	}
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getAutor() {
-		return autor;
-	}
-
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
-
-	public int getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(int precio) {
-		this.precio = precio;
-	}
-
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-
-	// Constructores
-	public Libro(String isbn, String titulo, String autor, int precio, String categoria) {
-		super();
-		this.isbn = isbn;
-		this.titulo = titulo;
-		this.autor = autor;
-		this.precio = precio;
-		this.categoria = categoria;
-	}
-
-	public Libro(String isbn) {
-		super();
-		this.isbn = isbn;
-	}
+public class LibroRepository {
 	
-	public static List<Libro> buscarTodosOrdenado() {
+	public static List<Libro> buscarTodos() {
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String usuario = "root";
 		String clave = "";
-		String consulta = "select * from Libros order by titulo";
+		String consulta = "select * from Libros";
 
 		// genero una lista de libros para trabajar de una forma natural
 		// con programación orientada a objeto
-		ArrayList<Libro> listaordenada = new ArrayList<Libro>();
+		ArrayList<Libro> lista = new ArrayList<Libro>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usuario, clave);
@@ -97,7 +37,7 @@ public class Libro {
 				Libro libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"),
 						rs.getInt("precio"), rs.getString("categoria"));
 				// añado cada libro a la lista
-				listaordenada.add(libro);
+				lista.add(libro);
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {
@@ -105,9 +45,9 @@ public class Libro {
 		}
 
 		// retorno la lista de objetos
-		return listaordenada;
+		return lista;
 	}
-
+	
 	public static Libro buscarPorTitulo(String titulo) {
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
@@ -159,12 +99,12 @@ public class Libro {
 		// retorno la lista de objetos
 		return libro;
 	}
-
-	public void insertar() {
+	
+	public void insertar(Libro libro) {
 
 		String consulta = "insert into Libros (isbn,titulo,autor,precio,categoria) values";
-		consulta = consulta + " (' " + this.getIsbn() + " ',' " + this.getTitulo() + " ',' " + this.getAutor() + " ', "
-				+ this.getPrecio() + " ,' " + this.getCategoria() + " ')";
+		consulta = consulta + " (' " + libro.getIsbn() + " ',' " + libro.getTitulo() + " ',' " + libro.getAutor() + " ', "
+				+ libro.getPrecio() + " ,' " + libro.getCategoria() + " ')";
 		System.out.println(consulta);
 
 		Connection conexion;
@@ -190,10 +130,10 @@ public class Libro {
 
 	}
 	
-	public void salvar() {
+	public void salvar(Libro libro) {
 
-		String consulta= "update Libros set titulo='"+getTitulo()+"' , autor='"+getAutor()+"', precio="+getPrecio();
-		consulta=consulta+ " , categoria='"+this.getCategoria()+"' where isbn='" +this.getIsbn()+"'";
+		String consulta= "update Libros set titulo='"+libro.getTitulo()+"' , autor='"+libro.getAutor()+"', precio="+libro.getPrecio();
+		consulta=consulta+ " , categoria='"+libro.getCategoria()+"' where isbn='" +libro.getIsbn()+"'";
 		System.out.println(consulta);
 
 		Connection conexion;
@@ -219,9 +159,9 @@ public class Libro {
 
 	}
 
-	public void borrar() {
+	public void borrar(Libro libro) {
 
-		String consulta = "delete from Libros where isbn='" + getIsbn() + "'";
+		String consulta = "delete from Libros where isbn='" + libro.getIsbn() + "'";
 
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca";

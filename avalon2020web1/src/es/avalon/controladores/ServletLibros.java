@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.avalon.dominio.Libro;
+import es.avalon.repositorios.LibroRepository;
 
 /**
  * Servlet implementation class Libro
@@ -39,7 +40,7 @@ public class ServletLibros extends HttpServlet {
 				Libro l = new Libro(isbn);
 				l.borrar();
 				// Cargar nuevo listado
-				List<Libro> listaLibros = Libro.buscarTodos();
+				List<Libro> listaLibros = LibroRepository.buscarTodos();
 				request.setAttribute("listaLibros", listaLibros);
 				// Redirigir
 				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
@@ -74,7 +75,7 @@ public class ServletLibros extends HttpServlet {
 				Libro milibro = new Libro(isbn, titulo, autor, precio, categoria);
 				milibro.salvar();
 				// Cargar nuevo listado
-				List<Libro> listaLibros = Libro.buscarTodos();
+				List<Libro> listaLibros = LibroRepository.buscarTodos();
 				request.setAttribute("listaLibros", listaLibros);
 				// Redirigir
 				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
@@ -92,7 +93,7 @@ public class ServletLibros extends HttpServlet {
 				Libro milibro = new Libro(isbn, titulo, autor, precio, categoria);
 				milibro.insertar();
 				// Cargar nuevo listado
-				List<Libro> listaLibros = Libro.buscarTodos();
+				List<Libro> listaLibros = LibroRepository.buscarTodos();
 				request.setAttribute("listaLibros", listaLibros);
 				// Redirigir
 				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
@@ -105,7 +106,7 @@ public class ServletLibros extends HttpServlet {
 
 			List<Libro> listaLibros = new ArrayList<Libro>();
 
-			listaLibros = Libro.buscarTodos();
+			listaLibros = LibroRepository.buscarTodos();
 
 			despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
 			request.setAttribute("listaLibros", listaLibros);
