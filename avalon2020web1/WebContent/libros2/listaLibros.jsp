@@ -30,12 +30,12 @@ List<Libro> lista = (List<Libro>) request.getAttribute("listaLibros");
 			<td><%=l.getAutor()%></td>
 			<td><%=l.getPrecio()%></td>
 			<td><%=l.getCategoria()%></td>
-			<td><a href="Borrar.jsp?isbn=<%= l.getIsbn()%>">borrar</a></td>
-			<td><a href="verDetalle.jsp?isbn=<%=l.getIsbn()%>">detalle</a></td>
-			<td><a href="formularioEditar.jsp?isbn=<%=l.getIsbn()%>">editar</a></td>
+			<td><a href="ServletLibros?isbn=<%= l.getIsbn()%>&accion=borrar">borrar</a></td>
+			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=detalle">detalle</a></td>
+			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=editar">editar</a></td>
 		</tr>
 		<%}%>
 	</table>
-	<a href="formularioInsertar.jsp">insertar</a>
+	<a href="ServletLibros?accion=formularioInsertar">insertar</a>
 </body>
 </html>

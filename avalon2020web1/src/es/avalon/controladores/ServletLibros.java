@@ -20,22 +20,117 @@ public class ServletLibros extends HttpServlet {
        
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		List<Libro> listaLibros = new ArrayList<Libro>();
 		
-		listaLibros = Libro.buscarTodos(); 
+		RequestDispatcher despachador = null;
+		String accion = request.getParameter("accion");
 		
-		RequestDispatcher despachador = request.getRequestDispatcher("libros2/ListaLibros.jsp");
+		//algun tipo de accion
+		if (accion!=null) {
+			
+			if (accion.equals("formularioInsertar")) {
+				
+				despachador = request.getRequestDispatcher("libros2/formularioInsertar.jsp");	
+				
+			} else if (accion.equals("borrar")){
+				
+				//Recepcionar
+				String isbn = request.getParameter("isbn");	
+				
+				//Eliminar
+				Libro milibro = new Libro(isbn);
+				milibro.eliminar();
+				
+				//Cargar el nuevo listado
+				List<Libro> listaLibros = Libro.buscarTodos();
+				request.setAttribute("listaLibros", listaLibros);
+				
+				//Redirigir
+				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
+				
+			} else if (accion.equals("detalle")) {
+				
+				String isbn = request.getParameter("isbn");
+				
+				Libro libro = Libro.buscarPorISBN(isbn);
+				request.setAttribute("libro", libro);
+				
+				
+				despachador = request.getRequestDispatcher("libros2/verDetalle.jsp");	
+			
+			} else if (accion.equals("editar")) {
+				
+				String isbn = request.getParameter("isbn");
+				
+				Libro libro = Libro.buscarPorISBN(isbn);
+				request.setAttribute("libro", libro);
+				
+				despachador = request.getRequestDispatcher("libros2/formularioEditar.jsp");
+				
+			} else if (accion.equals("actualizar")) {
+				
+				//Recepcionar
+				String isbn = request.getParameter("isbn");
+				String titulo = request.getParameter("titulo");
+				String autor = request.getParameter("autor");
+				int precio = Integer.parseInt(request.getParameter("precio"));
+				String categoria = request.getParameter("categoria");
+				
+				//Actualizar
+				Libro milibro = new Libro(isbn, titulo, autor, precio, categoria);
+				milibro.actualizar();
+				
+				//Cargar el nuevo listado
+				List<Libro> listaLibros = Libro.buscarTodos();
+				request.setAttribute("listaLibros", listaLibros);
+				
+				//Redirigir
+				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
+				
+				
+				
+			} else {
+				//accion de insertar
+				
+				//Recepcionar
+				String isbn = request.getParameter("isbn");
+				String titulo = request.getParameter("titulo");
+				String autor = request.getParameter("autor");
+				int precio = Integer.parseInt(request.getParameter("precio"));
+				String categoria = request.getParameter("categoria");
+				
+				//Insertar
+				Libro milibro = new Libro(isbn, titulo, autor, precio, categoria);
+				milibro.insertar();
+				
+				//Cargar el nuevo listado
+				List<Libro> listaLibros = Libro.buscarTodos();
+				request.setAttribute("listaLibros", listaLibros);
+				
+				//Redirigir
+				despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
+			} 
+		//no hay action	
+		} else {
+			List<Libro> listaLibros = new ArrayList<Libro>();
+			
+			listaLibros = Libro.buscarTodos(); 
+			
+			despachador = request.getRequestDispatcher("libros2/listaLibros.jsp");
+			//asigno datos adicionales
+			request.setAttribute("listaLibros", listaLibros);
+			
+			
+		}
 		
-		request.setAttribute("listaLibros", listaLibros);
-		
+		//reenvio
 		despachador.forward(request, response);
+		
 		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 
