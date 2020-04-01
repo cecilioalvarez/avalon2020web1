@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
 
 public class Libro {
 
@@ -69,7 +72,7 @@ public class Libro {
 		this.isbn = isbn;
 	}
 
-	public static ArrayList<Libro> buscarTodos() {
+	public static List<Libro> buscarTodos() {
 		Connection conexion;
 		String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String usuario = "root";
@@ -78,7 +81,7 @@ public class Libro {
 
 		// genero una lista de libros para trabajar de una forma natural
 		// con programación orientada a objeto
-		ArrayList<Libro> lista = new ArrayList<Libro>();
+		List<Libro> lista = new LinkedList<Libro>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usuario, clave);
@@ -113,8 +116,8 @@ public class Libro {
 		String usuario = "root";
 		String clave = "";
 		String consulta = "select * from Libros where titulo='" + titulo + "'";
-		Libro libro=null;
-		
+		Libro libro = null;
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usuario, clave);
@@ -122,8 +125,36 @@ public class Libro {
 			ResultSet rs = sentencia.executeQuery(consulta);
 			rs.next();
 
-			  libro= new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"),
-					rs.getInt("precio"), rs.getString("categoria"));
+			libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"), rs.getInt("precio"),
+					rs.getString("categoria"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// retorno la lista de objetos
+		return libro;
+	}
+
+	public static Libro buscarPorISBN(String isbn) {
+		Connection conexion;
+		String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		String usuario = "root";
+		String clave = "";
+		String consulta = "select * from Libros where isbn='" + isbn + "'";
+		Libro libro = null;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs = sentencia.executeQuery(consulta);
+			rs.next();
+
+			libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"), rs.getInt("precio"),
+					rs.getString("categoria"));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -140,6 +171,35 @@ public class Libro {
 		String consulta = "insert into Libros (isbn,titulo,autor,precio,categoria) values";
 		consulta = consulta + " ('" + this.getIsbn() + "','" + this.getTitulo() + "','" + this.getAutor() + "', "
 				+ this.getPrecio() + ",'" + this.getCategoria() + "')";
+		System.out.println(consulta);
+
+		Connection conexion;
+		String url = "jdbc:mysql://localhost:3306/biblioteca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		String usuario = "root";
+		String clave = "";
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, usuario, clave);
+
+			// sentencia SQL por lo tanto
+			// a la conexion que nos cree una opcion de ejecutar una sentencia
+			Statement sentencia = conexion.createStatement();
+			sentencia.execute(consulta);
+
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	public void salvar() {
+
+		String consulta = "update  Libros  set titulo='"+this.getTitulo()+"', autor='"+ this.getAutor()+"',  precio="+ this.getPrecio()+
+				", categoria='" +this.getCategoria()+"' where isbn='"+this.getIsbn()+"'";
+		
 		System.out.println(consulta);
 
 		Connection conexion;
