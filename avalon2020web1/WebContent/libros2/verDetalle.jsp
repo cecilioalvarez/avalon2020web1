@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	Libro l = Libro.buscarPorIsbn(request.getParameter("isbn"));
+	Libro l = (Libro) request.getAttribute("libro");
 %>
 <!DOCTYPE html>
 <html>
