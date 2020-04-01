@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="insertar.jsp"/>
+	<form action="ServletLibros" method="POST"/>
 	<p>
 		ISBN:<input type "text" name="isbn" />
 	</p>
@@ -23,7 +23,11 @@
 	<p>
 		CATEGORIA:<input type "text" name="categoria" />
 	</p>
-	<input type="submit" value="enviar" />
+
+<p>	
+<input type="hidden" name="accion" value="insertar"/>
+<input type="submit" value="enviar" />
+</p>
 
 </body>
 </html>

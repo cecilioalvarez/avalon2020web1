@@ -33,10 +33,9 @@ List<Libro> milista = (List<Libro>) request.getAttribute("listaLibros");
 			<td><%=l.getAutor()%></td>
 			<td><%=l.getPrecio()%></td>
 			<td><%=l.getCategoria()%></td>
-			<td><a href="borrar.jsp?isbn=<%=l.getIsbn()%>"> Borrar </a></td>
-			<td><a href="verDetalle.jsp?isbn=<%=l.getIsbn()%>"> Ver
-					detalle </a></td>
-			<td><a href="editar.jsp?isbn=<%=l.getIsbn()%>"> Editar </a></td>
+			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=borrar"> Borrar </a></td>
+			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=verDetalle"> Ver detalle </a></td>
+			<td><a href="ServletLibros?isbn=<%=l.getIsbn()%>&accion=editar"> Editar </a></td>
 		</tr>
 
 		<%

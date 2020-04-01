@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.avalon.dominio.Libro;
+import es.avalon.repositorios.jdbc.LibroRepository;
+import es.avalon.repositorios.jdbc.LibroRepositoryJDBC;
 
 /**
  * Servlet implementation class ServletLibroBorrar
@@ -23,7 +25,8 @@ public class ServletLibroBorrar extends HttpServlet {
 		String isbn=request.getParameter("isbn");
 		
 		Libro libro=new Libro(isbn);
-		libro.borrar();
+		LibroRepository repositorio= new LibroRepositoryJDBC();
+		repositorio.borrar(libro);
 		// esta es una redireccion que nos permite volver al listado y mostrar uno menos
 		response.sendRedirect("ServletListaLibrosJDBC");
 		

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.avalon.dominio.Libro;
+import es.avalon.repositorios.jdbc.LibroRepositoryJDBC;
 
 /**
  * Servlet implementation class ServletListaLibros
@@ -26,7 +27,7 @@ public class ServletListaLibrosJDBC extends HttpServlet {
 		
 		List<Libro> milista= new ArrayList<Libro>();
 		
-		milista=Libro.buscarTodos();
+		milista=LibroRepositoryJDBC.buscarTodos();
 	
 		pw.println("<html><body>");
 		
