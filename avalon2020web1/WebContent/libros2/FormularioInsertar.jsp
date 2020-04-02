@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="ServletLibros" >
+<form action="ServletLibros" method="POST" >
 <p> ISBN:<input type="text" name ="ISBN"/></p>
 <p> Titulo:<input type="text" name ="titulo"/></p>
 <p> Autor:<input type="text" name ="autor"/></p>
